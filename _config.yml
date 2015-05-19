@@ -1,0 +1,7 @@
+collections:
+  api:
+      output: true
+  lib:
+      output: true
+  tool:
+      output: true
