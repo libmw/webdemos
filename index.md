@@ -11,6 +11,9 @@ http://libmw.github.io/webdemos
 
 ## API
 
+* [CSS标准](api/css.html)
+
+* [HTML标准](api/html.html)
 
 * [正则表达式](api/reg.html)
 
@@ -47,6 +50,11 @@ http://libmw.github.io/webdemos
 * android开发环境[http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
 
 *
+
+## HTML5
+
+* [meta标签](h5/meta.html)
+
 
 
 

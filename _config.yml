@@ -5,3 +5,5 @@ collections:
       output: true
   tool:
       output: true
+  h5:
+    output: true
