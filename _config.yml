@@ -7,3 +7,5 @@ collections:
       output: true
   h5:
     output: true
+  skill:
+    output: true

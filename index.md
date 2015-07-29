@@ -28,6 +28,14 @@ http://libmw.github.io/webdemos
     * [百度地图](lib/baidu-map.html)
     * [openStreetMap](lib/open-street-map.html)
 
+* 图表类
+
+    * [Echarts](lib/baidu-map.html)
+    * [Hightcharts](lib/highcharts.html)
+
+* 富文本编辑器
+    * [UEditor](lib/ueditor.html)
+
 * 表单验证[http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
 
 * 幻灯播放[http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
@@ -56,7 +64,9 @@ http://libmw.github.io/webdemos
 * [meta标签](h5/meta.html)
 
 
+## 奇淫技巧
 
+* [垂直居中](skill/vertical-middle.html)
 
 
 please visit [http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
