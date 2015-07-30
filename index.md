@@ -15,6 +15,8 @@ http://libmw.github.io/webdemos
 
 * [HTML标准](api/html.html)
 
+* [WebApi](api/webapi.html)
+
 * [正则表达式](api/reg.html)
 
 * Canvas
