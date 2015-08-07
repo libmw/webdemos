@@ -1,0 +1,187 @@
+---
+  layout: lib
+  title: 谷歌地图
+---
+<style type="text/css">
+    #map, #mapRectangle {
+        height: 500px;
+        width: 900px;
+    }
+</style>
+
+# 谷歌地图
+
+### 谷歌地图最新版本不仅要收费，而且还要翻墙，及其不稳定。因此我们使用了在中国地区的老版本谷歌地图。api与新版的基本一样，而且是免费试用。
+
+## api引入地址：
+
+http://ditu.google.cn/maps/api/js?v=3&sensor=false&language=en&callback=initializegooglemap
+
+### 谷歌地图初始化时，纬度在前，经度在后，百度地图相反。
+
+
+如果是要中文地图，language=zh-CN
+
+<div id="map"></div>
+
+## 绘制一个区域
+
+首先需要加入控件：http://ditu.google.cn/maps/api/js?v=3&sensor=false&language=en`&libraries=drawing`&callback=initializegooglemap
+
+<pre><code data-language="javascript">this.editRectangle && this.editRectangle.setMap(null); //删除以前的区域
+
+var leftBottom = {
+  lat: 29.5549126,
+  lng: 106.5485537
+}; //左下点
+
+var rightTop = {
+    lat: 27.5549126,
+    lng: 105.5485537
+}; //右上点
+
+var rectangle = new google.maps.Rectangle({
+    strokeColor: '#1a92cc',
+    strokeOpacity: 0.5,
+    strokeWeight: 4,
+    fillColor: '#6ed0ff',
+    fillOpacity: 0.5,
+    map: _this.map,
+    bounds: new google.maps.LatLngBounds(new google.maps.LatLng(leftBottom.lat, leftBottom.lng), new google.maps.LatLng(rightTop.lat, rightTop.lng))
+});
+this.map.fitBounds(rectangle.getBounds());
+</code></pre>
+
+## 添加绘制控件
+
+首先需要加入控件：http://ditu.google.cn/maps/api/js?v=3&sensor=false&language=en`&libraries=drawing`&callback=initializegooglemap
+<pre><code data-language="javascript">var drawingManager = new google.maps.drawing.DrawingManager({
+    drawingMode: google.maps.drawing.OverlayType.MARKER,
+    drawingControl: false,
+    circleOptions: {
+        fillColor: '#ffff00',
+        fillOpacity: 1,
+        strokeWeight: 5,
+        clickable: false,
+        editable: true,
+        zIndex: 1
+    }
+});
+drawingManager.setMap(googleMap);
+
+drawingManager.addListener('rectanglecomplete', function(rectangle){
+    rectangle.setEditable(true);
+    rectangle.setDraggable(true);
+    drawingManager.setDrawingMode(null);
+    _this.rectangle = rectangle;
+    _this.isDrawed = true;
+});
+
+drawingManager.setDrawingMode(google.maps.drawing.OverlayType.RECTANGLE);
+
+//获取区域的GPS坐标
+var rectangle = this.rectangle;
+var gpsString = rectangle.getBounds().toString().replace(/\(|\)|\s/g, '').split(',');
+if(gpsString.length < 4){
+    return null;
+}
+var finallyResults = [];
+//google返回的两个点是左下|右上，而且点是纬度在前，精度在后。要转为精度在前，纬度在后，四个点顺序为左上|左下|右下|右上
+finallyResults.push(gpsString[1] + ',' + gpsString[2]);
+finallyResults.push(gpsString[1] + ',' + gpsString[0]);
+finallyResults.push(gpsString[3] + ',' + gpsString[0]);
+finallyResults.push(gpsString[3] + ',' + gpsString[2]);
+return (finallyResults);
+
+</code></pre>
+
+
+<div id="mapRectangle"></div>
+
+<script>
+    function initializegooglemap(){
+        var mapOptions = {
+            center: new google.maps.LatLng(29.5549126, 106.5485537),
+            zoom: 9,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var googleMap = new google.maps.Map($('#map')[0],
+            mapOptions);
+
+
+        function showInfoWindow (e, marker){
+            if(marker.infoWindowOpend){
+                return;
+            }
+
+            var infowindow = new google.maps.InfoWindow({
+                content: '我是marker，index为：' + marker.IOTMARKERINDEX
+            });
+
+            google.maps.event.addListener(infowindow, 'closeclick', function(event) {
+                marker.infoWindowOpend = false;
+            });
+
+            infowindow.open(googleMap, marker);
+            marker.infoWindowOpend = true;
+        }
+
+        //加入Marker
+        var boundsInited = false; //是否已经加入了
+        var points = [
+            {
+                lat: 29.5549126,
+                lng: 106.5485537
+            },
+            {
+                lat: 27.5549126,
+                lng: 105.5485537
+            }
+        ];
+
+        //加入多个maker，需要让视图包含这些icon且居中，需要调用fitBounds，而fitBounds需要bounds_changed后执行，否则会报错。
+        google.maps.event.addListener(googleMap, 'bounds_changed', function(){
+            if(boundsInited){
+                return;
+            }
+            boundsInited = true;
+            var currentBounds;
+            var markerPosition;
+            var marker;
+            var point;
+            var icon;
+
+            for(var i = 0; i < points.length; i++){
+                point = points[i];
+                //icon = _this.getIconByType(point.type);
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(point.lat, point.lng),
+                    map: googleMap
+                    //icon: icon //可以自定义icon，传入图片地址即可
+                });
+                marker.IOTMARKERINDEX = i;
+                google.maps.event.addListener(marker, 'click', (function(){
+                    var currentMarker = marker;
+                    return function(e){
+                        showInfoWindow(e, currentMarker);
+                    }
+                })());
+                currentBounds = googleMap.getBounds();
+                markerPosition = marker.getPosition();
+                if(!currentBounds.contains(markerPosition)){
+                    currentBounds = currentBounds.extend(markerPosition);
+                }
+            }
+            googleMap.fitBounds(currentBounds);
+        });
+    }
+</script>
+<script src="http://ditu.google.cn/maps/api/js?v=3&sensor=false&language=en&callback=initializegooglemap"></script>
+
+
+
+
+
+
+
+

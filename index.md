@@ -28,6 +28,7 @@ http://libmw.github.io/webdemos
 * 地图类
 
     * [百度地图](lib/baidu-map.html)
+    * [谷歌地图](lib/google-map.html)
     * [openStreetMap](lib/open-street-map.html)
 
 * 图表类
