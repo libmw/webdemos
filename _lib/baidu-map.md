@@ -17,10 +17,9 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
     var yPoints = [];
 
     for(var i = 0; i < pointsArr.length; i++){
-        var point = pointsArr[i].split(',');
-        xPoints.push(point[0]);
-        yPoints.push(point[1]);
-
+        var point = pointsArr[i];
+        xPoints.push(point.lng);
+        yPoints.push(point.lat);
     }
 
     $.ajax({
@@ -44,6 +43,24 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
         }
     });
 }
+
+/**
+* 调用方法： getBaiduPointsByGps([{lng:116,lat:10},{lng:116,lat:11}], function(res){console.log(res)})
+* 返回res内容： [
+    {
+        error: 0,
+        x: "MTE2LjAxMDQ2Njg2OTU5",
+        y: "MTAuMDAzOTgxMzUyMw=="
+    },
+    {
+        error: 0,
+        x: "MTE2LjAxMDQ3NDIyOTI3",
+        y: "MTEuMDA0MjE1NzY2NTM4"
+    }
+]
+****  注意，这里的x、y是加密后的百度地图坐标，可以作为经纬度传递给百度地图使用。比如构造一个new BMap.Point("MTE2LjAxMDQ3NDIyOTI3", "MTEuMDA0MjE1NzY2NTM4");
+*/
+
 </code></pre>
 
 ## 转换百度坐标为gps坐标
