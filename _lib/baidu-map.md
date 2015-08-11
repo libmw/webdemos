@@ -48,13 +48,12 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
 
 ## 转换百度坐标为gps坐标
 
-<pre><code data-language="javascript">function getGpsPoints(callback){
-    var geography = this.getGeography();
+<pre><code data-language="javascript">function getGpsPointsByBaidu(pointsArr, callback){
     var xPoints = [];
     var yPoints = [];
-    for(var i in geography){
-        xPoints.push(geography[i].lng);
-        yPoints.push(geography[i].lat);
+    for(var i in pointsArr){
+        xPoints.push(pointsArr[i].lng);
+        yPoints.push(pointsArr[i].lat);
     }
     $.ajax({
         url: 'http://api.map.baidu.com/ag/coord/convert?from=0&to=4&mode=1&x='+ xPoints.join(',') +'&y='+ yPoints.join(','),
@@ -84,4 +83,8 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
         }
     });
 }
+/**
+* 调用方法： getGpsPointsByBaidu([{lng:116,lat:10},{lng:116,lat:11}], function(res){console.log(res)});
+* 返回res内容： ["115.98953313041,9.9960186477", "115.98952577073,10.995784233462"]
+*/
 </code></pre>
