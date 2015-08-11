@@ -12,7 +12,6 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
 ## 转换gps坐标为百度地图的坐标
 
 <pre><code data-language="javascript">function getBaiduPointsByGps(pointsArr, callback){
-    //pointsArr的格式为 ['109.25417849429,28.970671972375996','109.25426387200001,28.167058867105997']
     var xPoints = [];
     var yPoints = [];
 
