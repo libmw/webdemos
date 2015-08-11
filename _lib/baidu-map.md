@@ -83,18 +83,19 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
             var finallyResults = [];
             for(var i = 0; i < xyResults.length; i++){
                 xyResult = xyResults[i];
-                if(xyResult.error != 0){
-                    callback(null);
-                    return;
+                if(xyResult.error != 0){ //如果有error，代表纠偏失败，使用原坐标
+                    finallyResults.push(pointsArr[i]);
+                }else{
+                    point = new BMap.Point(xyResult.x, xyResult.y);
+                    //gps坐标转换公式xPoints是以前的百度坐标，point是把以前的百度坐标当成gps坐标转换成的百度坐标
+                    xGps = 2 * xPoints[i] - point.lng;
+                    yGps = 2 * yPoints[i] - point.lat;
+                    finallyResults.push({
+                        lng: xGps,
+                        lat: yGps
+                    });
                 }
-                point = new BMap.Point(xyResult.x, xyResult.y);
-                //gps坐标转换公式xPoints是以前的百度坐标，point是把以前的百度坐标当成gps坐标转换成的百度坐标
-                xGps = 2 * xPoints[i] - point.lng;
-                yGps = 2 * yPoints[i] - point.lat;
-                finallyResults.push({
-                    lng: xGps,
-                    lat: yGps
-                });
+
             }
             callback(finallyResults);
         },
@@ -115,7 +116,5 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
         lng: 115.98952577073
     }
 ]
-
-*** 注意，对于国外的地址，由于不需要纠偏，res会直接为null(不管传了多少个坐标)，此时直接使用函数处理前坐标即可。
 */
 </code></pre>
