@@ -58,6 +58,7 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
     }
 ]
 ****  注意，这里的x、y是加密后的百度地图坐标，可以作为经纬度传递给百度地图使用。比如构造一个new BMap.Point("MTE2LjAxMDQ3NDIyOTI3", "MTEuMDA0MjE1NzY2NTM4");
+      另外，对于国外的gps地址，由于不需要纠偏，百度地图会返回{ error: -1}。此时直接使用纠偏前坐标即可。
 */
 
 </code></pre>
@@ -114,5 +115,7 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
         lng: 115.98952577073
     }
 ]
+
+*** 注意，对于国外的地址，由于不需要纠偏，res会直接为null(不管传了多少个坐标)，此时直接使用函数处理前坐标即可。
 */
 </code></pre>
