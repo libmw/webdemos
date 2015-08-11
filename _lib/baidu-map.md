@@ -74,7 +74,10 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
                 //gps坐标转换公式xPoints是以前的百度坐标，point是把以前的百度坐标当成gps坐标转换成的百度坐标
                 xGps = 2 * xPoints[i] - point.lng;
                 yGps = 2 * yPoints[i] - point.lat;
-                finallyResults.push(xGps + ',' + yGps);
+                finallyResults.push({
+                    lng: xGps,
+                    lat: yGps
+                });
             }
             callback(finallyResults);
         },
@@ -85,6 +88,15 @@ marker.setOffset(new BMap.Size(0, -55 / 2));
 }
 /**
 * 调用方法： getGpsPointsByBaidu([{lng:116,lat:10},{lng:116,lat:11}], function(res){console.log(res)});
-* 返回res内容： ["115.98953313041,9.9960186477", "115.98952577073,10.995784233462"]
+* 返回res内容： [
+    {
+        lat: 9.9960186477,
+        lng: 115.98953313041
+    },
+    {
+        lat: 10.995784233462,
+        lng: 115.98952577073
+    }
+]
 */
 </code></pre>
