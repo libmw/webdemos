@@ -5,9 +5,38 @@
 
 # 百度地图
 
-## 让图标的底部中心指向地图点：
+### 典型用法
+<pre><code data-language="javascript">//初始化
+var map = new BMap.Map($('.map-content')[0]);
+var points = this.points;
+var point = new BMap.Point(108.483525, 35.254578); //中国中心
+map.centerAndZoom(point, 4);
+map.enableScrollWheelZoom();
 
+//创建marker及icon
+icon = '图片地址';
+bIcon = new BMap.Icon(icon, new BMap.Size(43, 55));
+bPoint = new BMap.Point(point.lng, point.lat);
+marker = new BMap.Marker(bPoint, {
+    icon: bIcon
+});
+//让图标的底部中心指向地图点
 marker.setOffset(new BMap.Size(0, -55 / 2));
+map.addOverlay(marker);
+
+//marker跳动
+marker.setZIndex(this.maxZindex++);
+setTimeout(function(){
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+}, 300);
+setTimeout(function(){
+    marker.setAnimation(null);
+}, 1500);
+
+//按照多个点居中
+this.map.setViewport([new BMap.Point(point.lng, point.lat)， new BMap.Point(point1.lng, point1.lat)]);
+</code></pre>
+
 
 ## 转换gps坐标为百度地图的坐标
 

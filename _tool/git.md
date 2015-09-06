@@ -33,6 +33,35 @@ ssh协议需要软件实现，windows的cmd是没有ssh软件的，需要git bas
 
 如果项目是https协议或者没有ssh key，则每次都需要输入用户名和密码。
 
+### 如果一台电脑两个ssh账号，则需要生成两个ssh
+
+1.切换到.ssh目录，执行 ssh-keygen -t rsa -C "your-email-address" 执行后输入一个名称如id_rsa_qq
+
+2.把生成的id_rsa_qq.pub里的东西粘贴到git上
+
+3.先执行 eval "$(ssh-agent)"，再执行 ssh-add ~/.ssh/id_rsa_qq 把生成的key加到ssh里
+
+4.再修改config文件 ：
+
+Host github
+  HostName github.com
+  IdentityFile ~/.ssh/id_rsa
+
+Host github_qq
+  HostName github.com
+  IdentityFile ~/.ssh/id_rsa_qq
+
+`修改后，clone的时候要把github.com改为github_qq`
+
+5.最后在项目下修改提交者的用户名和用户邮箱： git config user.name "lmj"  git config user.email "627574754@qq.com"
+
+这样不方便的就是clone的时候需要修改下地址，二是需要从新指定提交者的邮箱，不然就会默认用global里的用户名和邮箱来提交了。
+
+注意，如果指定了一个github上不存在的邮箱，在commit信息里会只显示用户名。
+
+一旦使用了这个sshkey成功push了代码 sshkeys页面的key前的灰色圆点就会变为绿色。
+
+
 
 ## git checkout
 

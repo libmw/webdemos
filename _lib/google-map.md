@@ -22,6 +22,87 @@ http://ditu.google.cn/maps/api/js?v=3&sensor=false&language=en&callback=initiali
 
 如果是要中文地图，language=zh-CN
 
+### 典型用法
+
+<pre><code data-language="javascript">//初始化
+var mapOptions = {
+  center: new google.maps.LatLng(42.882688, -90.579412),
+  zoom: 3,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var googleMap = new google.maps.Map($('.map-content')[0], mapOptions);
+
+//设置中心点
+var myLatlng = new google.maps.LatLng(point.lat, point.lng);
+this.map.setCenter(myLatlng);
+
+//设置级别
+this.map.setZoom(15);
+
+//显示infoWindow
+google.maps.event.addListener(marker, 'click', (function(){
+    var currentMarker = marker;
+    return function(e){
+        _this._showInfoWindow(e, currentMarker);
+    }
+})());
+_showInfoWindow: function(e, marker){
+    if(marker.infoWindowOpend){
+        return;
+    }
+
+    var infowindow = new google.maps.InfoWindow({
+        content: pageManager.getMarkerInfo(marker.IOTMARKERINDEX)
+    });
+
+    google.maps.event.addListener(infowindow, 'closeclick', function(event) {
+        marker.infoWindowOpend = false;
+    });
+
+    infowindow.open(this.map, marker);
+    marker.infoWindowOpend = true;
+}
+
+
+//fitBounds
+google.maps.event.addListener(googleMap, 'bounds_changed', function(){
+    if(_this.boundsInited){
+        return;
+    }
+    _this.boundsInited = true;
+
+    var currentBounds;
+    var markerPosition;
+    var marker;
+    var point;
+    var icon;
+
+    for(var i = 0; i < points.length; i++){
+        point = points[i];
+        icon = _this.getIconByType(point.type);
+        //加入marker
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(point.lat, point.lng),
+            map: googleMap,
+            icon: icon //icon传图片地址即可
+        });
+        _this.markers.push(marker);
+        currentBounds = googleMap.getBounds();
+        markerPosition = marker.getPosition();
+        if(!currentBounds.contains(markerPosition)){
+            currentBounds = currentBounds.extend(markerPosition);
+        }
+    }
+    googleMap.fitBounds(currentBounds);
+});
+
+//Marker跳动
+marker.setAnimation(google.maps.Animation.BOUNCE);
+setTimeout(function(){
+    marker.setAnimation(null);
+}, 1000);
+</code></pre>
+
 <div id="map"></div>
 
 ## 绘制一个区域

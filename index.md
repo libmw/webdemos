@@ -17,6 +17,8 @@ http://libmw.github.io/webdemos
 
 * [WebApi](api/webapi.html)
 
+* [Http](api/http.html)
+
 * [正则表达式](api/reg.html)
 
 * Canvas
@@ -70,6 +72,8 @@ http://libmw.github.io/webdemos
 ## 奇淫技巧
 
 * [垂直居中](skill/vertical-middle.html)
+
+* [未解之谜](skill/why.html)
 
 
 please visit [http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
