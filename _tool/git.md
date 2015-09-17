@@ -90,3 +90,21 @@ Host github_qq
 ## git diff 文件名
 
 显示某个文件被修改了那些地方
+
+## 开分支
+
+### 创建分支
+
+git branch mystudygit1.0
+
+分支创建后，需要push到服务器服务器才能有新分支。
+
+其他人需要pull后才能看到新分支
+
+### 切换分支
+git checkout mystudygit1.0
+
+### 删除分支
+git branch -d mystudygit1.0  //如果该分支没有合并到主分支会报错
+或者
+git branch -D mystudygit1.0   //强制删除
