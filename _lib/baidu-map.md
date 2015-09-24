@@ -8,22 +8,22 @@
 ### 典型用法
 <pre><code data-language="javascript">//初始化
 var map = new BMap.Map($('.map-content')[0]);
-var points = this.points;
 var point = new BMap.Point(108.483525, 35.254578); //中国中心
 map.centerAndZoom(point, 4);
 map.enableScrollWheelZoom();
 
 //创建marker及icon
-icon = '图片地址';
-bIcon = new BMap.Icon(icon, new BMap.Size(43, 55));
-bPoint = new BMap.Point(point.lng, point.lat);
-marker = new BMap.Marker(bPoint, {
+var icon = '图片地址';
+var bIcon = new BMap.Icon(icon, new BMap.Size(43, 55));
+var bPoint = new BMap.Point(point.lng, point.lat);
+var marker = new BMap.Marker(bPoint, {
     icon: bIcon
 });
 //让图标的底部中心指向地图点
 marker.setOffset(new BMap.Size(0, -55 / 2));
 map.addOverlay(marker);
-
+//更新marker位置
+marker.setPosition( new BMap.Point(point.lng, point.lat) );
 //marker跳动
 marker.setZIndex(this.maxZindex++);
 setTimeout(function(){
