@@ -87,6 +87,10 @@ Host github_qq
 
 提交develop分支到服务器
 
+## git remote -v
+
+查看远程分支地址
+
 ## git diff 文件名
 
 显示某个文件被修改了那些地方
