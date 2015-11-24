@@ -75,5 +75,7 @@ http://libmw.github.io/webdemos
 
 * [未解之谜](skill/why.html)
 
+* [文章汇总](skill/article.html)
+
 
 please visit [http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
