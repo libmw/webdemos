@@ -25,7 +25,12 @@ http://libmw.github.io/webdemos
 
 * [文件操作](api/files.html)
 
-## 代码库
+## 架构
+
+* [性能优化](architecture/performance.html)
+
+
+## 三方库
 
 * 地图类
 
@@ -72,6 +77,8 @@ http://libmw.github.io/webdemos
 ## 奇淫技巧
 
 * [垂直居中](skill/vertical-middle.html)
+
+* [js奇淫技巧](skill/vertical-middle.html)
 
 * [未解之谜](skill/why.html)
 

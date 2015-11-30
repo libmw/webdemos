@@ -1,6 +1,8 @@
 collections:
   api:
       output: true
+  architecture:
+      output: true
   lib:
       output: true
   tool:
