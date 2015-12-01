@@ -21,6 +21,8 @@ http://libmw.github.io/webdemos
 
 * [正则表达式](api/reg.html)
 
+* [node.js](api/nodejs.html)
+
 * Canvas
 
 * [文件操作](api/files.html)
@@ -62,6 +64,8 @@ http://libmw.github.io/webdemos
 * [git命令](tool/git.html)
 
 * [Bush命令](tool/bash.html)
+
+* [MarkDown](tool/markdown.html)
 
 * jekyll的使用
 

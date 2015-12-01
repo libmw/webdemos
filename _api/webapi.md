@@ -14,3 +14,9 @@
 
 Fetch提供了比xhr更优雅的获取资源的方式。<http://www.w3ctech.com/topic/854>
 
+## Service Worker
+
+Service Worker可以把静态文件缓存在本地，可以监控本域发起的各种请求，提高访问速度，使网站支持离线访问。
+
+[Service Worker 入门](http://www.w3ctech.com/topic/866)
+
