@@ -40,6 +40,21 @@ this.map.setViewport([new BMap.Point(point.lng, point.lat)， new BMap.Point(poi
 
 ## 转换gps坐标为百度地图的坐标
 
+符合百度转换规则的点为
+<pre><code data-language="javascript">function checkPoint(lon, lat){
+    return lon > 73 && lon < 137 && lat > 1 && lat < 55;
+}
+</code></pre>
+
+`经度必须在73到137之间，纬度在1到55之间，即中国地图所在的长方形`
+
+![bmapCoords](bmapcoords.jpg)
+
+[官方纠偏文档](http://developer.baidu.com/map/index.php?title=webapi/guide/changeposition) 最多转换100个点，如果点有错，将全部转换失败,因此在使用前先用上面的checkPoint判断
+
+
+### 以下方法最多转换20个点，错误的点会返回{"error":-5}
+
 <pre><code data-language="javascript">function getBaiduPointsByGps(pointsArr, callback){
     var xPoints = [];
     var yPoints = [];

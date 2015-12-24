@@ -43,3 +43,7 @@
 为内联元素设置margin，仅仅`左右margin有效`
 
 当上下margin的值为百分比的时候，基数为包含块的`宽度`而非高度
+
+# 选择器
+
+![CSS选择符归类](http://ww2.sinaimg.cn/large/c5131475jw1ez3oi2e092j21h72e0wvu.jpg)

@@ -13,6 +13,8 @@ http://libmw.github.io/webdemos
 
 * [CSS标准](api/css.html)
 
+* [JS标准](api/js.html)
+
 * [HTML标准](api/html.html)
 
 * [WebApi](api/webapi.html)
@@ -66,6 +68,8 @@ http://libmw.github.io/webdemos
 * [Bush命令](tool/bash.html)
 
 * [MarkDown](tool/markdown.html)
+
+* [gulp](tool/gulp.html)
 
 * jekyll的使用
 
