@@ -21,9 +21,12 @@ http://libmw.github.io/webdemos
 
 * [Http](api/http.html)
 
+* [字符编码、字符集](api/encode.html)
+
 * [正则表达式](api/reg.html)
 
 * [node.js](api/nodejs.html)
+
 
 * Canvas
 
