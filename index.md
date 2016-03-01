@@ -11,6 +11,12 @@ http://libmw.github.io/webdemos
 
 ## API
 
+API包含了css、js、html等等的标准制定者和一些最本质的、最基础的、最重要的概念以及笔记。
+
+标准制定者包含[W3C](http://www.w3.org/TR/#tr_Javascript_APIs)、[WHATWG](https://html.spec.whatwg.org/)
+
+标准整理者包含[MDN](https://developer.mozilla.org/en/HTML)
+
 * [CSS标准](api/css.html)
 
 * [JS标准](api/js.html)
@@ -39,6 +45,9 @@ http://libmw.github.io/webdemos
 
 ## 三方库
 
+* 工程化
+
+    * [React](lib/react.html)
 * 地图类
 
     * [百度地图](lib/baidu-map.html)
@@ -64,6 +73,7 @@ http://libmw.github.io/webdemos
     * [rainbows](lib/rainbow.html)
 
 
+
 ## 开发工具
 
 * [git命令](tool/git.html)
@@ -73,6 +83,8 @@ http://libmw.github.io/webdemos
 * [MarkDown](tool/markdown.html)
 
 * [gulp](tool/gulp.html)
+
+* [测试工具](tool/test.html)
 
 * jekyll的使用
 
@@ -94,6 +106,8 @@ http://libmw.github.io/webdemos
 * [未解之谜](skill/why.html)
 
 * [文章汇总](skill/article.html)
+
+* [问题汇总](skill/issue.html)
 
 
 please visit [http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)

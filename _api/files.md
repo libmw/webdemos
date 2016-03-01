@@ -32,4 +32,44 @@
         document.write("pre:"+name + " new:"+newName +"<br/>");
     }
 }
+
+_getListByFolder: function(folderPath){ //递归所有子文件夹
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var folderObj = fso.GetFolder(folderPath);
+    var filesEnumerator = new Enumerator(folderObj.files);
+    var fileTypeReg = /.js$/;
+    var subFolderEnumerator = new Enumerator(folderObj.subFolders);
+
+    for(; !filesEnumerator.atEnd();   filesEnumerator.moveNext()){
+        var file = filesEnumerator.item();
+        if(file.name.match(fileTypeReg)){
+            this._dumpFile(file);
+        }
+    }
+
+    for(; !subFolderEnumerator.atEnd();   subFolderEnumerator.moveNext()){
+        this._getListByFolder(subFolderEnumerator.item().Path);
+    }
+
+},
+_dumpFile: function(file){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+   // console.log(file.name);
+    var fileObj = fso.OpenTextFile(file, 1, true); //写方式打开
+
+
+    if(!fileObj.AtEndOfStream){
+        var content = fileObj.ReadAll();
+        this._findTr(content, file.name);
+    }
+    fileObj.Close();
+    //this._langList.abc = content;
+},
+_findTr: function(contnet, file){
+    var trReg = /IOT.tr\s*\(['"]([^'"]+)/g;
+    var text;
+    while(text = trReg.exec(contnet)){
+        this._langList[text[1]] = {content:'', file: file};
+    }
+}
 </code></pre>
