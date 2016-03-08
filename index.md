@@ -72,7 +72,9 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
     * [rainbows](lib/rainbow.html)
 
+* 其他
 
+   * 基于nodejs的使用js开发桌面应用[electron](http://electron.atom.io/#built-on-electron)
 
 ## 开发工具
 
