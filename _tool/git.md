@@ -112,3 +112,13 @@ git checkout mystudygit1.0
 git branch -d mystudygit1.0  //如果该分支没有合并到主分支会报错
 或者
 git branch -D mystudygit1.0   //强制删除
+
+### 仓库转移
+
+git clone --bare git@code.iotplat.net:dengmingdeng/hotsense.git
+
+cd hotsenese.git
+
+git push --mirror git@gitlab.onenet.com:limengjun/hotsense.git
+
+说明：需要先在新仓库里建立对应的仓库，然后push到这个仓库

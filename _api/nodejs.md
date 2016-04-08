@@ -3,6 +3,9 @@
   title: node
 ---
 
+# NodeJS
+
+## 批量执行任务的[npm-scripts](https://docs.npmjs.com/misc/scripts)
 
 ## 一些文章
 

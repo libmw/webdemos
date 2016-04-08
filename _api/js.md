@@ -11,6 +11,10 @@
 
 ### [深入浅出ES6中文版]http://www.infoq.com/cn/minibooks/ES6-in-Depth
 
+## 面向对象
+
+[《JavaScript面向对象精要》](https://segmentfault.com/a/1190000004334910)
+
 ## setTimeout/setInterval
 
 setTimeout(func,time)
