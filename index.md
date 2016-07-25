@@ -42,6 +42,10 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
 * [性能优化](architecture/performance.html)
 
+* [模块化](architecture/module.html)
+
+
+
 
 ## 三方库
 
@@ -58,6 +62,9 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
     * [Echarts](lib/baidu-map.html)
     * [Hightcharts](lib/highcharts.html)
+
+* UI库
+    * [响应式HTML5框架,包含bootstrap、Foundation等](http://www.imooc.com/article/1323)
 
 * 富文本编辑器
     * [UEditor](lib/ueditor.html)
@@ -90,13 +97,15 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
 * jekyll的使用
 
-* android开发环境[http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
+* android开发环境
 
 *
 
 ## HTML5
 
 * [meta标签](h5/meta.html)
+
+* [移动端开发](h5/mobile.html)
 
 
 ## 奇淫技巧
