@@ -17,6 +17,8 @@
 
 ![container block](css_containerblock.png)
 
+所以大多数节点的包含块都是块级祖先容器。absolute和fixed特殊。
+
 另: td(display:table-cell)的包含块是table(display:table)
 
 三种比较少见的包含块，灰色区域是span，position是relative
@@ -32,11 +34,14 @@
 
 ## [height](http://www.w3.org/TR/CSS2/visudet.html#the-height-property)
 
+
 当height的值为百分比的时候，基数为包含块:
 
 1.如果包含块`没有设置height值`，则这个百分比值无效，将自动转换为`auto`。
 
 2.如果当前元素为`absolute`，则会自动计算包含块`padding盒子`的高度为基数。
+
+codepen示例： <http://codepen.io/libmw/pen/ZOPaQN>
 
 ## [margin-top,margin-bottom](http://www.w3.org/TR/CSS2/box.html#margin-properties)
 
