@@ -52,6 +52,7 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 * 工程化
 
     * [React](lib/react.html)
+    
 * 地图类
 
     * [百度地图](lib/baidu-map.html)
@@ -62,6 +63,7 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
     * [Echarts](lib/baidu-map.html)
     * [Hightcharts](lib/highcharts.html)
+    * [jsplumb](lib/jsplumb.html)
 
 * UI库
     * [响应式HTML5框架,包含bootstrap、Foundation等](http://www.imooc.com/article/1323)
@@ -106,6 +108,8 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 * [meta标签](h5/meta.html)
 
 * [移动端开发](h5/mobile.html)
+
+* [webGL](h5/webgl.html)
 
 
 ## 奇淫技巧

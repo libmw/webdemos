@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>City 0.1</title>
+		<style>
+			body {
+				background-color: #d8e7ff;
+				font-family: Monospace;
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='three.js/build/three.min.js'></script>
+		<script type="text/javascript" src="three.js/OrbitControls.js"></script>
+		<script>
+			var camera, scene, renderer;
+			var orbitControls,clock;
+
+			renderer = new THREE.WebGLRenderer( { antialias: false } );
+			renderer.setClearColor( 0xd8e7ff );
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
+
+			orbitControls = new THREE.OrbitControls(camera);
+			orbitControls.autoRotate = true;
+			clock = new THREE.Clock();
+			orbitControls.autoRotate = false;
+
+			scene = new THREE.Scene();
+
+			var textureLoader = new THREE.TextureLoader();
+			var path = "./cubemap/";//nature 可以修改为不同文件夹下的纹理
+			var format = '.jpg';
+			var texture0 = textureLoader.load( path + 'posx' + format );
+			var texture1 = textureLoader.load( path + 'negx' + format );
+			var texture2 = textureLoader.load( path + 'posy' + format );
+			var texture3 = textureLoader.load( path + 'negy' + format );
+			var texture4 = textureLoader.load( path + 'posz' + format );
+			var texture5 = textureLoader.load( path + 'negz' + format );
+
+			var materials = [
+				new THREE.MeshBasicMaterial( { map: texture0,side: THREE.BackSide } ),
+				new THREE.MeshBasicMaterial( { map: texture1,side: THREE.BackSide } ),
+				new THREE.MeshBasicMaterial( { map: texture2,side: THREE.BackSide } ),
+				new THREE.MeshBasicMaterial( { map: texture3,side: THREE.BackSide } ),
+				new THREE.MeshBasicMaterial( { map: texture4,side: THREE.BackSide } ),
+				new THREE.MeshBasicMaterial( { map: texture5,side: THREE.BackSide } )
+			];
+			var faceMaterial = new THREE.MeshFaceMaterial( materials );
+			var geometry = new THREE.BoxGeometry( 20, 20, 20 );
+			camera.position.z = 6;
+
+			var boxMesh = new THREE.Mesh(geometry, faceMaterial);
+			scene.add(boxMesh);
+			render();
+
+
+			function render(){
+				requestAnimationFrame(render);
+				var delta = clock.getDelta();
+				orbitControls.update(delta);
+				renderer.render( scene, camera );
+			}
+		</script>
+	</body>
+</html>
