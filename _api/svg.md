@@ -1,0 +1,129 @@
+---
+  layout: api
+  title: SVG标准
+---
+
+# SVG标准
+
+不多解释，矢量图，任意缩放大小且可以控制各种样式
+
+## SVG的旋转
+
+### 原SVG，宽度170，高度150
+
+<svg height="150px" width="170px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 右转90度:
+
+ 1、把画布的宽度高度交换；2、变换图形的中心点到当前画布的中心点；3.根据图形的中心点旋转
+
+ 其中第二步的做法为：translate ((height - width) / 2) ((width - height) / 2) height和width都是原图的尺寸
+
+变换后svg宽度150，高度170，先把图形的中心点放到svg中心点即图形先变换到-10 10的坐标，再以图形中心点85 75旋转90度。<br>
+
+<svg height="170px" width="150px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image transform="translate(-10 10) rotate(90 85 75)" x="0" y="0" width="170px" height="150px" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 右转180度:
+
+直接根据中心点旋转
+
+<svg height="150px" width="170px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image transform="rotate(180 85 75)" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 右转270度:
+
+同90度，只是第三步是旋转270度。
+
+<svg height="170px" width="150px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image transform="translate(-10 10) rotate(270 85 75)" x="0" y="0" width="170px" height="150px" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 0上下翻转
+
+翻转都不需要改变宽高，但是需要先translate到正中心点，再scale，再translate到负中心点。
+
+<svg height="150px" width="170px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image transform="translate(85 75) scale(1, -1) translate(-85 -75)" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 90上下翻转
+
+在90度旋转的基础上再进行翻转。由于旋转了90度交换了宽高，因此scale的时候翻转的水平方向，其他都与0度翻转一样。
+
+<svg height="170px" width="150px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image transform="translate(-10 10) rotate(90 85 75) translate(85 75) scale(-1, 1) translate(-85 -75)" x="0" y="0" width="170px" height="150px" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 180上下翻转
+
+<svg height="150px" width="170px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image transform="rotate(180 85 75) translate(85 75) scale(1, -1) translate(-85 -75)" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 270上下翻转
+
+<svg height="170px" width="150px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image transform="translate(-10 10) rotate(270 85 75)  translate(85 75) scale(-1, 1) translate(-85 -75)" x="0" y="0" width="170px" height="150px" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 0度水平翻转 = 180度上下翻转
+
+<svg height="150px" width="170px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image transform="translate(85 75) scale(-1, 1) translate(-85 -75)" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pump.svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>
+
+### 根据以上算法得出万能旋转、上下翻转、水平翻转公式（水平翻转后的图形均可以找出对应的上下翻转图形，每个图形的旋转、翻转总共只有8种情况）
+
+<p>
+    <a href="#" onclick="svgDemo.rotate(90);return false;">旋转</a> |
+    <a href="#" onclick="svgDemo.rotate(-90);return false;">逆时针旋转</a> |
+    <a href="#" onclick="svgDemo.flipHorizontal();return false;">水平翻转</a> |
+    <a href="#" onclick="svgDemo.flipVertical();return false;">垂直翻转</a> |
+</p>
+<div id="svgContainer" style="width:170px;height:170px;"></div>
+<script>
+function Svg(dom, svgUrl, svgWidth, svgHeight){
+    this.dom = dom;
+    this.svgUrl = svgUrl;
+    this.svgWidth = svgWidth;
+    this.svgHeight = svgHeight;
+    this._currentDegree = 0; //当前角度
+    this._currentIsFlipVertical = false; //是否进行了垂直翻转
+    this._transformList = null;
+    this._svgDom = null;
+    this._imageDom = null;
+    this._init();
+}
+Svg.prototype._init = function(){
+    var centerX = this.svgWidth / 2;
+    var centerY = this.svgHeight / 2;
+    var halfDiff = centerY - centerX;
+    this._transformList = { //一种图形只有8种情况，这8种情况可以通过旋转90/180/270度以及旋转后再垂直翻转的图形表示。
+        '0': '',
+        '0_v': 'translate('+ centerX +' '+ centerY +') scale(1, -1) translate('+ -centerX +' '+ -centerY +')',
+        '90': 'translate('+ halfDiff +' '+ -halfDiff +') rotate(90 '+ centerX +' '+ centerY +')',
+        '90_v': 'translate('+ halfDiff +' '+ -halfDiff +') rotate(90 '+ centerX +' '+ centerY +') translate('+ centerX +' '+ centerY +') scale(-1, 1) translate('+ -centerX +' '+ -centerY +')',
+        '180': 'rotate(180 '+ centerX +' '+ centerY +')',
+        '180_v': 'rotate(180 '+ centerX +' '+ centerY +') translate('+ centerX +' '+ centerY +') scale(1, -1) translate('+ -centerX +' '+ -centerY +')',
+        '270': 'translate('+ halfDiff +' '+ -halfDiff +') rotate(270 '+ centerX +' '+ centerY +')',
+        '270_v': 'translate('+ halfDiff +' '+ -halfDiff +') rotate(270 '+ centerX +' '+ centerY +') translate('+ centerX +' '+ centerY +') scale(-1, 1) translate('+ -centerX +' '+ -centerY +')',
+    };
+    this.dom.innerHTML = '<svg width="'+ this.svgWidth +'px" height="'+ this.svgHeight +'px" version="1.1" xmlns="http://www.w3.org/2000/svg"><image x="0" y="0" width="'+ this.svgWidth +'px" height="'+ this.svgHeight +'px" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+ this.svgUrl +'" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg>';
+    this._svgDom = this.dom.getElementsByTagName('svg')[0];
+    this._imageDom = this.dom.getElementsByTagName('image')[0];;
+}
+Svg.prototype.flipVertical = function(){ //垂直翻转
+    this._imageDom.setAttribute('transform', this._transformList[this._currentDegree + (this._currentIsFlipVertical ? '' : '_v')])
+    this._currentIsFlipVertical = !this._currentIsFlipVertical;
+}
+Svg.prototype.flipHorizontal = function(){ //水平翻转
+    var targetDegree = (this._currentDegree + 180) % 360;
+    this._imageDom.setAttribute('transform', this._transformList[targetDegree + (this._currentIsFlipVertical ? '' : '_v')])
+    this._currentDegree = targetDegree;
+    this._currentIsFlipVertical = !this._currentIsFlipVertical;
+}
+Svg.prototype.rotate = function(rotateDegree){ //旋转
+    var targetDegree, isOddDegree;
+    if(rotateDegree != 90 && rotateDegree != -90){
+        return false;
+    }
+    if(this._currentIsFlipVertical){
+        targetDegree = (this._currentDegree + (rotateDegree / 90) * 270 + 360) % 360;
+    }else{
+        targetDegree = (this._currentDegree + rotateDegree + 360) % 360;
+    }
+    isOddDegree = (targetDegree % 180 != 0);
+    this._svgDom.setAttribute('width', (isOddDegree ? this.svgHeight : this.svgWidth) + 'px');
+    this._svgDom.setAttribute('height', (isOddDegree ? this.svgWidth : this.svgHeight) + 'px');
+    this._imageDom.setAttribute('transform', this._transformList[targetDegree + (this._currentIsFlipVertical ? '_v' : '')])
+    this._currentDegree = targetDegree;
+}
+var svgDemo = new Svg(document.getElementById('svgContainer'), 'pump.svg', 170, 150);
+</script>
