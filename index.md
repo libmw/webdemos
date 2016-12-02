@@ -113,6 +113,8 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
 * [webGL](h5/webgl.html)
 
+* [手机传感器数据，方向、加速度等](h5/sensor.html)
+
 
 ## 奇淫技巧
 
