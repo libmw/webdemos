@@ -18,30 +18,11 @@
 		color: #92A5BA;
 
 	}
-	.header{
-		background:#076BCB url(/static/common/img/logo.png) 0 0 no-repeat;
-		height: 50px;
-	}
 	.main{
 		padding: 20px;
 	}
 	h2{
 		font-size: 18px;;
-	}
-	#speed{
-		border: 1px solid #E9E9E9;
-		font-size: 20px;
-		overflow: hidden;
-		border-radius: 3px;
-		background: red;
-		background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#D1F37A), to(#F61111));
-	}
-	.speed-value{
-		background: #fff;
-		height: 30px;
-	}
-	#max,#min{
-		color: blue;
 	}
 	img{
 		max-width: 100%;
@@ -79,11 +60,19 @@
 		return document.querySelector(s);
 	}
 
+	var payLoad = {
+		deviceorientation: {},
+		devicemotion: {}
+	};
+
 	window.addEventListener("deviceorientation", function (e) {
 		$('#absoluteOrientation').innerHTML = e.absolute;
 		$('#alphaOrientation').innerHTML = e.alpha;
 		$('#betaOrientation').innerHTML = e.beta;
 		$('#gammaOrientation').innerHTML = e.gamma;
+		payLoad.deviceorientation.alpha = alpha;
+		payLoad.deviceorientation.beta = beta;
+		payLoad.deviceorientation.gamma = gamma;
 	}, true);
 
 	window.addEventListener('devicemotion', function(e){
@@ -97,7 +86,20 @@
 		$('#accelerationIncludingGravityY').innerHTML = accelerationIncludingGravity.y;
 		$('#accelerationIncludingGravityZ').innerHTML = accelerationIncludingGravity.z;
 
+		payLoad.devicemotion.x = accelerationIncludingGravity.x;
+		payLoad.devicemotion.y = accelerationIncludingGravity.y;
+		payLoad.devicemotion.z = accelerationIncludingGravity.z;
+
 	}, false);
+
+	function sendPayLoad(){}
+
+	var webSocket = new WebSocket('ws://192.168.217.71:4000/xxx', '3dgame-protocol');
+	webSocket.onopen = function (event) {
+		sendPayLoad();
+	};
+
+
 </script>
 </body>
 </html>

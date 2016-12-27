@@ -77,7 +77,9 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
 * 幻灯播放[http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
 
-* 文件上传[http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)
+* [文件上传](lib/file-upload.html)
+
+* [图片裁剪](lib/image-clip.html)
 
 * 代码高亮
 
@@ -127,6 +129,11 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 * [文章汇总](skill/article.html)
 
 * [问题汇总](skill/issue.html)
+
+## 心得
+
+* [项目开发经验](experience/project.html)
+
 
 
 please visit [http://iotofcmcc.github.io/docs/fe](http://iotofcmcc.github.io/docs/fe)

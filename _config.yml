@@ -11,3 +11,5 @@ collections:
     output: true
   skill:
     output: true
+  experience:
+    output: true
