@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-	<title>中移物联网开放平台手机测试</title>
+	<title>sensor</title>
 </head>
 <body width="100px" height="100px">
 <style>
@@ -31,9 +31,17 @@
 <div class="header"></div>
 
 <div class="main">
-	<h1>Detecting device orientation</h1>
+	<h1>deviceorientation事件和deviceorientationabsolute事件</h1>
 	<h2>
-		<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Orientation_and_motion_data_explained" target="_blank">DeviceOrientation</a>是判断手机的物理方向的，即当前手机如何放置的，硬件为陀螺仪
+		这两个事件都是用来判断手机方位的。事件返回结构都一样，分别有absolute，alpha，beta，gama。<br>
+		deviceorientation获取的方位不一定是绝对的，特别是absolute为false的时候<br>
+		而deviceorientationabsolute获取的方位是绝对的，能够通过返回值只到手机当前相对于地球的确切方位，返回值里absolute为true，如果手机没有能力获取绝对方位，一般是因为没有磁场传感器，则这个事件返回的
+		alpha、beta、gama均为null，absolute为false。
+		<br>
+		因此在需要获取手机绝对方位时，需要用到deviceorientationabsolute事件而不是deviceorientation事件，否则会造成有些浏览器返回相对方位(无法取得正北方向)
+		<br>
+		<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Orientation_and_motion_data_explained" target="_blank">MDN</a><br>
+		<a href="https://www.w3.org/TR/orientation-event/" target="_blank">W3C</a><br>
 	</h2>
 	<p>
 		absolute:<span id="absoluteOrientation"></span>
@@ -57,12 +65,25 @@
 		<br>
 		beta:<span id="betaOrientation"></span>
 		<br>
+		absolute_beta:<span id="betaOrientationAbsolute"></span>
+		<br>
 		beta围绕X轴旋转，通过beta可以判断出手机在X轴上的任意状态。<br>
 		当手机的顶部和底部处于水平线上时为0。<br>
 		向顶部升高的方向旋转，顶部最高时为90，继续旋转直到又在一个水平面时达到180。<br>
 		向底部升高的方向旋转，底部最高时为-90，继续旋转直到又在一个水平面时达到-180。
 	</p>
-	<p><img src="https://developer.mozilla.org/@api/deki/files/5697/=gamma.png" />gamma:<span id="gammaOrientation"></span></p>
+	<p>
+		<img src="https://developer.mozilla.org/@api/deki/files/5697/=gamma.png" />
+		<br>
+		gamma:<span id="gammaOrientation"></span>
+		<br>
+		absolute_gamma:<span id="gammaOrientationAbsolute"></span>
+		<br>
+		gamma围绕Y轴旋转，通过gamma可以判断出手机左右翻转的状态。<br>
+		当手机左右处于水平线上时为0。<br>
+		向右侧翻转逐渐增加，直到90。<br>
+		向左侧翻转逐渐减少，直到-90。
+	</p>
 
 	<h2>
 		DeviceMotionEvent是判断加速度的，DeviceMotionEvent.acceleration不含重力，DeviceMotionEvent.accelerationIncludingGravity含重力，硬件为加速度传感器
