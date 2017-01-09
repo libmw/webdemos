@@ -34,11 +34,15 @@
 	<h1>deviceorientation事件和deviceorientationabsolute事件</h1>
 	<h2>
 		这两个事件都是用来判断手机方位的。事件返回结构都一样，分别有absolute，alpha，beta，gama。<br>
-		deviceorientation获取的方位不一定是绝对的，特别是absolute为false的时候<br>
-		而deviceorientationabsolute获取的方位是绝对的，能够通过返回值只到手机当前相对于地球的确切方位，返回值里absolute为true，如果手机没有能力获取绝对方位，一般是因为没有磁场传感器，则这个事件返回的
+		deviceorientation获取的alpha不一定是指的南北方，这是有原因的。如果使用指南针传感器来的到alpha的值，这个值只能代表当前的南北方<br>
+		这样造成了我们不能精确获取旋转的状态，因为南北方旋转并不一定是正圆。这样还有一个大问题是指南针容易受磁场干扰，很难反应精确的旋转状态<br>
+		因此目前较为妥当的实现是让absolute为false，alpha的值每次刷新给一个初始值，旋转的时候返回精确的旋转角度，即alpha取陀螺仪的值。<br>
+		那么我们非要获得指南针的数据呢？这时候就要用deviceorientationabsolute了。
+		deviceorientationabsolute获取的alpha为指南针的数据，一旦手机有能力得到这个数据，返回值里absolute为true，如果手机没有能力获取指南针数据，一般是因为没有磁场传感器，则这个事件返回的
 		alpha、beta、gama均为null，absolute为false。
 		<br>
-		因此在需要获取手机绝对方位时，需要用到deviceorientationabsolute事件而不是deviceorientation事件，否则会造成有些浏览器返回相对方位(无法取得正北方向)
+		因此在需要获取手机指南针数据时，需要用到deviceorientationabsolute事件而不是deviceorientation事件。<br>
+		而需要获取旋转的精确数据时，应该用deviceorientation事件。但是deviceorientation也很有可能返回指南针数据，不同的浏览器实现不同，此时只能将就用了。
 		<br>
 		<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Orientation_and_motion_data_explained" target="_blank">MDN</a><br>
 		<a href="https://www.w3.org/TR/orientation-event/" target="_blank">W3C</a><br>

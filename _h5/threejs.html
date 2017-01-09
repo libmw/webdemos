@@ -16,6 +16,9 @@
 		<script>
 			var camera, scene, renderer;
 			var orbitControls,clock;
+			var lookAtX = 0;
+			var lookAtY = 0;
+			var lookAtZ = 0;
 
 			renderer = new THREE.WebGLRenderer( { antialias: false } );
 			renderer.setClearColor( 0xd8e7ff );
@@ -29,6 +32,8 @@
 			orbitControls.autoRotate = false;
 
 			scene = new THREE.Scene();
+			var axes = new THREE.AxisHelper(20);
+			scene.add(axes);
 
 			var textureLoader = new THREE.TextureLoader();
 			var path = "./cubemap/";//nature 可以修改为不同文件夹下的纹理
@@ -49,8 +54,12 @@
 				new THREE.MeshBasicMaterial( { map: texture5,side: THREE.BackSide } )
 			];
 			var faceMaterial = new THREE.MeshFaceMaterial( materials );
+			//faceMaterial = new THREE.MeshBasicMaterial({color: 0x22cccc});;
 			var geometry = new THREE.BoxGeometry( 20, 20, 20 );
 			camera.position.z = 6;
+			camera.position.x = 0;
+			camera.position.y = 0;
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 			var boxMesh = new THREE.Mesh(geometry, faceMaterial);
 			scene.add(boxMesh);
@@ -60,9 +69,26 @@
 			function render(){
 				requestAnimationFrame(render);
 				var delta = clock.getDelta();
-				orbitControls.update(delta);
+				//orbitControls.update(delta);
+				camera.lookAt(new THREE.Vector3(lookAtX, lookAtY, lookAtZ));
 				renderer.render( scene, camera );
 			}
+
+
+			var alphaStart = null;
+
+			window.addEventListener("deviceorientation", function (e) {
+				if(alphaStart === null){
+					alphaStart = e.alpha; //初始化alpha的起始值
+				}
+				var currentAlphaDegree = e.alpha - alphaStart;
+				lookAtX = -20*Math.sin(Math.PI*currentAlphaDegree/180);
+				lookAtZ = parseInt(-20*Math.cos(Math.PI*currentAlphaDegree/180)) + 6;
+
+				var currentBetaDegree = e.beta;
+				lookAtY = 20*Math.sin(Math.PI*currentBetaDegree/180);
+
+			}, true);
 		</script>
 	</body>
 </html>
