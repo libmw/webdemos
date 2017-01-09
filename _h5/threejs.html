@@ -85,7 +85,7 @@
 				lookAtX = -20*Math.sin(Math.PI*currentAlphaDegree/180);
 				lookAtZ = parseInt(-20*Math.cos(Math.PI*currentAlphaDegree/180)) + 6;
 
-				var currentBetaDegree = e.beta;
+				var currentBetaDegree = e.beta - 90;
 				lookAtY = 20*Math.sin(Math.PI*currentBetaDegree/180);
 
 			}, true);
