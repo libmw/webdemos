@@ -1,0 +1,80 @@
+
+<html>
+	<head>
+		<title>利用googleVR的polyfill实现在不具备VR功能的浏览器上展示VR效果</title>
+		<style>
+			body {
+				background-color: #d8e7ff;
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script src='three.js/build/three.min.js'></script>
+		<script type="text/javascript" src="three.js/OrbitControls.js"></script>
+		<script src="three.js/WebVR.js"></script>
+		<script src="three.js/VRControls.js"></script>
+		<script src="three.js/VREffect.js"></script>
+		<script src="three.js/webvr-polyfill.js"></script>
+		<script>
+			if ( WEBVR.isLatestAvailable() === false ) {
+
+				document.body.appendChild( WEBVR.getMessage() );
+
+			}
+			var camera, scene, renderer;
+			renderer = new THREE.WebGLRenderer( { antialias: false } );
+			renderer.setClearColor( 0xd8e7ff );
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 110 );
+			camera.layers.enable( 1 );
+
+			scene = new THREE.Scene();
+
+			var controls = new THREE.VRControls( camera );
+			var effect = new THREE.VREffect( renderer );
+			effect.setSize(window.innerWidth, window.innerHeight);
+
+			//CUBIC MAP SETUP
+			var urlPrefix = "./cubemap/";
+			var format = ".jpg";
+			var urls = [ urlPrefix + "posx"+format, urlPrefix + "negx"+format,
+				urlPrefix + "posy"+format, urlPrefix + "negy"+format,
+				urlPrefix + "posz"+format, urlPrefix + "negz"+format];
+
+			//LOAD CUBIC MAP IMAGE TO SKYBOX
+			var loader = new THREE.CubeTextureLoader();
+			var textureCube = loader.load( urls );
+
+			//ADD THE CAMERA AND SKYBOX TEXTURE TO THE SCENE
+			scene.background = textureCube;
+
+			// Get the VRDisplay and save it for later.
+			var vrDisplay = null;
+			navigator.getVRDisplays().then(function(displays) {
+				if (displays.length > 0) {
+					vrDisplay = displays[0];
+					// Kick off the render loop.
+					vrDisplay.requestAnimationFrame(animate);
+				}
+			});
+
+			// Request animation frame loop function
+			var lastRender = 0;
+			function animate(timestamp) {
+				var delta = Math.min(timestamp - lastRender, 500);
+				lastRender = timestamp;
+				// Apply rotation to cube mesh
+				//cube.rotation.y += delta * 0.0006;
+				// Update VR headset position and apply to camera.
+				controls.update();
+				// Render the scene.
+				effect.render(scene, camera);
+				// Keep looping.
+				vrDisplay.requestAnimationFrame(animate);
+			}
+		</script>
+	</body>
+</html>

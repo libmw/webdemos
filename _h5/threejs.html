@@ -1,10 +1,9 @@
 <html>
 	<head>
-		<title>City 0.1</title>
+		<title>利用在立方体上渲染图片的原理得到全景图，使用手机的陀螺仪控制全景。缺点是立方体反面渲染导致图片是反的，陀螺仪控制不完善</title>
 		<style>
 			body {
 				background-color: #d8e7ff;
-				font-family: Monospace;
 				margin: 0;
 				overflow: hidden;
 			}
@@ -15,7 +14,6 @@
 		<script type="text/javascript" src="three.js/OrbitControls.js"></script>
 		<script>
 			var camera, scene, renderer;
-			var orbitControls,clock;
 			var lookAtX = 0;
 			var lookAtY = 0;
 			var lookAtZ = 0;
@@ -26,10 +24,6 @@
 			document.body.appendChild( renderer.domElement );
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
 
-			orbitControls = new THREE.OrbitControls(camera);
-			orbitControls.autoRotate = true;
-			clock = new THREE.Clock();
-			orbitControls.autoRotate = false;
 
 			scene = new THREE.Scene();
 			var axes = new THREE.AxisHelper(20);
@@ -68,8 +62,6 @@
 
 			function render(){
 				requestAnimationFrame(render);
-				var delta = clock.getDelta();
-				//orbitControls.update(delta);
 				camera.lookAt(new THREE.Vector3(lookAtX, lookAtY, lookAtZ));
 				renderer.render( scene, camera );
 			}
