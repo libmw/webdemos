@@ -15,6 +15,10 @@
 
 [《JavaScript面向对象精要》](https://segmentfault.com/a/1190000004334910)
 
+[JavaScript继承来历](http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html)
+
+[JavaScript继承的实现](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html)
+
 ## setTimeout/setInterval
 
 setTimeout(func,time)
