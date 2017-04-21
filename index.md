@@ -27,6 +27,8 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
 * [SVG](api/svg.html)
 
+* [图片](api/photo.html)
+
 * [Http/Https](api/http.html)
 
 * [字符编码、字符集](api/encode.html)
@@ -34,6 +36,8 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 * [正则表达式](api/reg.html)
 
 * [node.js](api/nodejs.html)
+
+* [开源协议](api/license.html)
 
 
 * Canvas

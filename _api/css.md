@@ -52,3 +52,31 @@ codepen示例： <http://codepen.io/libmw/pen/ZOPaQN>
 # 选择器
 
 ![CSS选择符归类](http://ww2.sinaimg.cn/large/c5131475jw1ez3oi2e092j21h72e0wvu.jpg)
+
+# 预处理
+
+css预处理非常有必要，即使你不使用任何其他工具，预处理也应该使用，这样能够大大提高写码效率。
+
+css最常见预处理工具为less和sass。
+
+less预处理可以使用winless或者考拉直接编译，如果有构建工具，则构建工具可以直接编译。
+
+# 模块化
+
+css的全局作用域导致了变量名冲突的潜在危险，而模块化便是把css限制在一个局部的作用域里。
+
+* 通过明明实现模块化，说白了就是每个模块通过命名规范来避免冲突，典型的如[BEM](http://getbem.com/)
+
+* 通过js来写css。就是react那套方案了，带来的危害就是全成内联样式了。那你还给我谈css搞毛啊？react这套显然不好。
+
+* 通过编译工具来实现模块化。说白了就是通过js的模块化方案来引入css，通过编译工具来对className进行统一的处理，且让js可以访问className，爽歪歪。典型的就是[cssModules了](https://github.com/css-modules/css-modules)
+
+# vertical-align
+
+看字面意是垂直方向的对齐，这个对齐可以取很多的值，但是大多数值都是基于当前内联元素的baseline的。baseline就是X字符的下边缘。
+
+如设置为10px，意思是把本元素的baseline放到父元素的baseline的上方10px处。
+
+百分比值取本元素的line-height为基数
+
+top就是本身的顶与父元素的顶对齐，bottom同理，middle则不是
