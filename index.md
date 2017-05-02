@@ -55,9 +55,13 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
 ## 三方库
 
-* 工程化
+* 基础库
 
     * [React](lib/react.html)
+
+    * [Vue](lib/vue.html)
+
+
     
 * 地图类
 
