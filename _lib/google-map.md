@@ -257,7 +257,7 @@ return (finallyResults);
         });
     }
 </script>
-<script src="http://ditu.google.cn/maps/api/js?v=3&sensor=false&language=en&callback=initializegooglemap"></script>
+<script src="//ditu.google.cn/maps/api/js?v=3&sensor=false&language=en&callback=initializegooglemap"></script>
 
 
 
