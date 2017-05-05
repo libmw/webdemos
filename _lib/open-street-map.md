@@ -1,7 +1,7 @@
 ---
   layout: lib
   title: OpenStreetMap
-  exthead: <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" /><link rel="stylesheet" href="leaflet.draw.css" />
+  exthead: <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" /><link rel="stylesheet" href="leaflet.draw.css" />
 ---
 <style type="text/css">
     #map {
@@ -30,7 +30,7 @@ tile.openstreetmap.org：官方的瓦片服务商是，是否免费无限使用�
 
 <div id="map"></div>
 
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="leaflet.draw.js"></script>
 <script>
 
