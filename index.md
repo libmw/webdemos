@@ -50,6 +50,8 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
 * [模块化](architecture/module.html)
 
+* [前端工程化工具](architecture/pack.html)
+
 
 
 
