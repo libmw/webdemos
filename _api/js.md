@@ -42,3 +42,33 @@ es6的{}形成一个块级作用域，有了这个很多地方就不需要再使
 ## 字符串方法
 
 includes是否包含，startsWith是否开始，endsWith是否结束，repeat重复当前字符串，padStart、padEnd用一个字符串补全当前字符串到指定长度
+
+## 函数
+
+箭头函数里的this指向外层函数的this，箭头函数本身无this特性
+
+函数的length属性，如果参数有默认值或者rest参数，则只计算到这个参数的前一个参数
+
+## 数组
+
+console.log(a, b, c) 与 console.log(...[a, b, c])等价
+
+Array.from转换类数组为数组
+
+fill方法用于初始化数组 new Array(3).fill('a') 得到 [a, a, a]  fill方法还可以接受第二个和第三个参数，用于指定填充的起始位置和结束位置。
+
+## 对象
+
+name = 'Jim'; var obj = {name} 则obj为 {'name': 'jim'}
+
+对象中的函数可以简写：
+
+<pre><code data-language="javascript">
+var obj = {
+  log() {
+    console.log('this is log');
+  }
+}
+</code></pre>
+
+直接通过大括号把变量作为key： obj = {[name]: value, ['a' + 'b']: value1};
