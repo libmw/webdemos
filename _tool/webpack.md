@@ -1,0 +1,31 @@
+---
+  layout: tool
+  title: webpack
+---
+webpack
+
+# webPack
+
+webpack是用nodejs编写的一个程序，这个程序使用node运行，它按照配置文件的规则把我们的源代码编译成我们需要的生产环境代码。
+
+webpack自身实现了一个模块加载器，默认通过入口js文件，寻找依赖，然后编译成浏览器可以直接识别的js代码，生成最终的js文件。但是，通过配置，webpack可以编译任意文件。
+
+# loader
+
+loader是一个标准的node modules,及commonjs模块，目前node还不支持es6模块的export关键字，如果使用es6编写loader，需要编译。
+
+loader输入是文件流输出可以是任意类型，但是最后一个loader必须输入标准的、无语法错误的commonjs模块，否则webpack会编译失败。因为它必须解析正确的js模块才能获得依赖关系。
+
+# nodejs
+
+顺带说一下nodejs。
+
+nodejs模块都是commonjs模块，为了让模块能够正常运行(在没有js模块机制的宿主中)，所有模块被编译为：
+
+`function(exports, require, module, __filename, __dirname){模块代码}()`
+
+因此所有模块里都可以使用exports, require, module, __filename, __dirname变量。
+
+node具有常用的原生模块，如http fs path等等，这些不需要写在package.json依赖中
+
+require一个模块的时候，如果只写了文件名，则会到node_modules里寻找，所以引用非node_modules的模块最好加上相对路径。
