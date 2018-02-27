@@ -72,3 +72,19 @@ var obj = {
 </code></pre>
 
 直接通过大括号把变量作为key： obj = {[name]: value, ['a' + 'b']: value1};
+
+## Promise
+
+把Promise实例看成一个拥有各种状态和一些方法的对象，则：
+
++  新建Promise的时候，首先执行传入的function，执行这个function的时候传入内部包装好的resolve和reject
+
++  一旦resolve或者reject被调用，即可在内部改变Promise实例的状态，从而判断是否需要执行then
+
++  then方法调用的时候，如果Promise状态已经resolve，直接执行，不然就记录下来，resolve的时候再执行
+
+而对于then方法的参数function：
+
++ 如果此function返回promise对象，则then的执行结果为此promise对象
+
++ 否则，then的执行结果为一个状态为resolve的promise对象
