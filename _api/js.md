@@ -81,7 +81,9 @@ var obj = {
 
 +  一旦resolve或者reject被调用，即可在内部改变Promise实例的状态，从而判断是否需要执行then
 
-+  then方法调用的时候，如果Promise状态已经resolve，直接执行，不然就记录下来，resolve的时候再执行
++  then方法调用的时候，如果Promise状态已经resolve，待当前片段所有同步脚本执行完成之后直接执行，不然就记录下来，resolve的时候再执行.
+
++ 由于then需要等到同步脚本执行后才能执行，因此resolve并不能保证让then立即执行
 
 而对于then方法的参数function：
 
