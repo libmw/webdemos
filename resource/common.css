@@ -93,9 +93,11 @@ a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
 a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
 
 .doc-detail blockquote{
-    color:#666666;
-    margin:0;
-    padding: 0.5em 0 0.5em 2em;
+    color: #7f8fa4;
+    font-size: inherit;
+    padding: 8px 24px;
+    margin: 16px 0;
+    border-left: 3px solid #eaeaea;
 }
 .doc-detail blockquote p{
     margin: 0;

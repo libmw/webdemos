@@ -1,127 +1,127 @@
 ---
   layout: api
-  title: 正则表达式
+  title: HTML
 ---
 
-## RegExp
+## MDN之learn篇
 
-RegExp是一个正则的全局类，保存了很多静态属性，静态属性被所有正则有关的方法所修改，包括string的方法
 
-$1-$9代表()里面的东西，每次执行相关的匹配方法都会从$1开始赋值
+# html
 
-RegExp.input 被匹配的字符串，没匹配到就不会更新
+## [html基本](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started)
 
-RegExp.lastMatch 最后一次匹配到的字符串
+HTML5重定义了元素分类，不通过block和inline来划分。
 
-RegExp.lastParen 最后一次字匹配(即括号里面的匹配)
+empty element结尾没必要再打斜杠
 
-RegExp.leftContex被查找的字符串中从字符串开始位置到最后匹配之前的位置之间的字符
+disabled这种布尔属性，即使写值，也仅有一个值，就是本身，所以通常不用写值
 
-RegExp.rightContext被搜索的字符串中从最后一个匹配位置开始到字符串结尾之间的字符
+属性的值可以是单引号、双引号、无引号
 
-RegExp. multiline 多行匹配 ，ie和opera不可用。实例的/m不会更改静态的multiline属性。此属性可读 可写。
+对于空格，不管你打多少个，浏览器只显示一个，除非加pre标签
 
-## RegExp实例
+## [metadata](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML)
 
-实例的方法：exec，test
+keywords不再被搜索引擎支持，因为这个东西完全可以和页面实际内容不符，搜索引擎不是傻逼对吧？
 
-对于全局性的正则表达式，每次调用正则表达式的匹配方法都会去修改正则表达式实例的属性。包括test、exec。而没有/g或者非正则表达式的方法则不会修改实例。
+对于lang属性，可以让搜索引擎更快速的分析文档，也可以让读屏软件正确的读取，但是对于中文，应该用处不是很大
 
-lastIndex代表匹配后的索引，如最后匹配到的字符索引为8，lastIndex就是9。这也是指定下次匹配的开始索引，是可写的。`非全局匹配忽略此值`
+## [链接](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Creating_hyperlinks)
 
-### exec方法
+对于链接的最佳实践：文字应该让用户明白点击后会跳转到哪里、不要让相同文字的链接连接到不同地方防止读屏困难、尽量使用相对路径(代码更加易读，浏览器不需要在解析域名)、链接到文件的时候说明文件大小和类型
 
-exec是RegExp实例的方法
+对于mailto，可以用cc、bcc、title、subject
 
-如果有/g，exec将从实例的lastIndex处开始匹配，否则从起始端匹配。
+## [文本包裹](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Advanced_text_formatting)
 
-只会单次匹配不会全局匹配，要全局匹配必须重复调用，调用一次更新一次lastIndex值。
+dl代表描述列表，dt代表描述项，dd代表描述定义，一个dt应该只对应一个dd才对
 
-#### exec返回值
+对于时间，我们应该用time标签加datetime属性包裹，方便机器识别
 
-如果没有匹配到，返回null
+对于缩略词，我们应该用abbr标签加title属性包裹
 
-如果无括号，返回值为长度为1的数组，元素为匹配到的文本。
+## [图片包裹](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML)
 
-如果有括号，除了返回匹配到的文本，数组还包含括号里面的所有东西。
+使用figure和figcaption标签对图片进行包裹和说明，但是figure标签不仅仅包裹图片，也包裹视频
 
-如果返回值不为null，则返回值还有两个属性，input是被匹配的字符串，index是匹配到的第一个字符的index。
+## [视频音频](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
 
-### test方法
+使用track标签可以原生显示字幕，字幕还可以指定语言
 
-test方法是RegExp实例的方法
+## [iframe](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Other_embedding_technologies)
 
-此方法不接受字符串外的其他格式参数，包括数字，否则返回false。
+iframe: https可以防止iframe访问父https页面，反之亦然，所以使用https后的站点是不能通过iframe访问的
 
-如果有/g，test将从实例的lastIndex处开始匹配，否则从起始端匹配。
+通过sandbox我们可以阻止ifram里面的网页执行script、弹出窗口等等
 
-#### test返回值
+## [表格](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_boxes/Styling_tables)
 
-返回值为true或者false
+table: table需要用了table-layout:fixed，才会认设置的宽度，否则table会根据内容自适应，给table或者td设置宽度也无效
 
-### match方法
+关于这个属性，有专门的文章探讨：https://css-tricks.com/fixing-tables-long-strings/
 
-match是String的方法，它的返回值依赖于有没有g属性。如果没有g，它返回值于exec一样，且有index和input属性，如果有g，它只返回数组，数组就是匹配到的所有值。
+colgroup和col结合可以定义每一列的样式，但是现在来看css3完全可以解决这个问题了。
 
-### replace方法
+tbody总是存在的，即使你在代码里不写，浏览器也会自动加上。
 
-replace是字符串的方法，此方法遵守正则实例的lastIndex等属性。
+对于视力障碍的table优化：使用th来定义表头，对th使用scope来指定此表头代表的列(col)还是行(row)，或者列集合(colgroup)/行集合(rowgroup)。还可以使用id和headers替代本方案，但是过于复杂，一般不做推荐。
 
-#### 第二个参数是字符串
+## `WebSockets`
 
-字符串里面可以使用 $1-$99代表匹配到的各个括号里的值。$&代表匹配到的字符串。$`代表匹配到的字符串的左边的字符串。$&apos;代表匹配到的字符串的右边的字符串。$$代表字符&apos;$&apos;。
+[WebSockets同源策略](https://www.christian-schneider.net/CrossSiteWebSocketHijacking.html)
 
-#### 第二个参数是function
+由于WebSockets不遵循同源策略，而WebSockets在第一次握手的时候是使用的http/s协议，会携带cookie信息，所以：
+WebSockets如果后端鉴权没做好，会导致较为严重的安全问题。后端在建立连接的时候不应该使用cookie鉴权，并应该鉴定Origin头部字段
 
-function(regStr,b1-b*,ind,sourceStr)。第一个参数是匹配到的串，b1-b*代表各个匹配到的括号，ind代表第一次匹配到的位置。sourceStr代表被匹配的串。在function里面也可以使用段字符，不过不能直接使用$&，应该是RegExp[&apos;$&&apos;] RegExp[&apos;$`&apos;] RegExp[&apos;$\&apos;&apos;] RegExp[&apos;$1&apos;]
+## `表单`
 
-如在replace方法里若有global，则会多次匹配字符串，每次匹配都会调用一次function，每次调用regStr,b1-b*,ind,sourceStr参数都会重置。
+[form-data](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data)
 
-### search方法
+multipart/form-data的意思是传输的内容被分成多个部分，文件和文本分成不同的部分传输，因为http是基于文本的协议，所以必须指定为form-data才能传输文件
 
-search是字符串的方法，此方法不遵守正则实例的lastIndex。search返回的是被查找的正则或者字符串出现在本字符串中的位置。
+对于Xss，在输出内容到前端的时候默认应该把内容里的特殊符号都进行转义，除非是富文本。对于csrf，应该在form提交的时候带上token
 
-### split方法
+[表单验证](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation)
 
-split的第一个参数也可以是正则表达式。
+可以使用:valid和:invalid伪类对表单进行验证通过和不通过的样式展现。 浏览器api也提供了丰富的原生valid功能如validationMessage、validity.valid等。表单也有checkValidity、setCustomValidity等方法
 
-split第二个参数代表截取后的数组的最大length，若超过，这后面的被忽略。
+[自定义表单](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/How_to_build_custom_form_widgets)
 
+对于自定义的表单，可以使用role属性来使tab有用，这样增强了访问性。比如表示select的div的role为rolebox，option的role为option
 
-## 量词+ . ?
+[手动构造formdata](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_forms_through_JavaScript)
 
-量词默认都是`贪婪匹配`，即尽可能匹配多点。
+手动构造formdata，可以用字符串拼接任意形式的formdata，然后用xhr.send方法发送，formdata的格式和chrome调试工具里的字符串格式一致。
 
-如果要非贪婪匹配，需要在量词后加上问号(?)，比如/a+?/.test('aaa')，这样尽量匹配少，得到a
+[浏览器兼容](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/HTML_forms_in_legacy_browsers)
 
-关于/a*/写法：这种写法和/\B/相等。都是匹配单词边界。所以他们返回的都是一个空字符串。
+查找兼容性除了can i use，还有quirks mode等网站
 
-### 前瞻
+[各个表单的可设置属性](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Property_compatibility_table_for_form_widgets)
 
-捕获特定字符前的字符，比如/a(?=\d)/.exec(&apos;a1&apos;)匹配后面跟一个整数的a
+这个列表里有不同的表单元素对不同的css属性浏览器的支持情况。
 
-### 后瞻
+## [页面focus](https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus)
 
-捕获非特定字符前的字符，比如/a(?!\d)b/.exec(&apos;ab&apos;)匹配后面不跟一个整数的a
+var focused = document.hasFocus(); 可以检测当前的页面是否被聚焦
 
-## 关于\g参数
+## [页面可见性](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API)
 
-global参数一旦存在，正则表达式则会多次匹配。 每次都会修改RegExp的各个属性值。
+通过document的onvisibilitychange事件和判断hidden/visibilityState属性来判断当前页面是否被因此，从而暂停一些功能如视频播放、幻灯片等
 
+## `音视频格式`
 
+浏览器的video和audio标签对音视频格式的支持是有限的，参考[此表](https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats)
 
+## `分类`
 
+传统对标签分类一般分为inline和block两大类，但是[新式的分类](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories)却不是按照这样来分。
 
+## `MIME type`
 
-## 例子
+[Multipurpose Internet Mail Extensions](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type)意为多功能Internet邮件扩展，它设计的最初目的是为了在发送电子邮件时附加多媒体数据，让邮件客户程序能根据其类型进行处理。然而当它被HTTP协议支持之后，它的意义就更为显著了。它使得HTTP传输的不仅是普通的文本，而变得丰富多彩。
+每个MIME类型由两部分组成，前面是数据的大类别，例如声音audio、图象image等，后面定义具体的种类。
 
-### 用前瞻实现金额的逗号分隔
+## `颜色`
 
-<pre><code data-language="javascript">'1234567890'.replace(/\B(?=((\d{3})+)$)/g,',');</code></pre>
-
-\B匹配非单词边界,?=代表后面跟了什么
-<script>
-</script>
-
-
-
+可以通过[caret-color](https://developer.mozilla.org/en-US/docs/Web/CSS/caret-color)改变光标的颜色

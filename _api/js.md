@@ -3,6 +3,7 @@
   title: JavaScript标准
 ---
 
+
 # JavaScript标准
 
 ## 书籍
@@ -81,6 +82,8 @@ var obj = {
 
 +  一旦resolve或者reject被调用，即可在内部改变Promise实例的状态，从而判断是否需要执行then
 
++  如果传入function直接return，则Promise实例立即resolve，resolve的value即为return的value
+
 +  then方法调用的时候，如果Promise状态已经resolve，待当前片段所有同步脚本执行完成之后直接执行，不然就记录下来，resolve的时候再执行.
 
 + 由于then需要等到同步脚本执行后才能执行，因此resolve并不能保证让then立即执行
@@ -90,3 +93,19 @@ var obj = {
 + 如果此function返回promise对象，则then的执行结果为此promise对象
 
 + 否则，then的执行结果为一个状态为resolve的promise对象
+
+## async
+
+async表面是function，实际上这个function和传统的function有很大的区别：
+
++ async无论有没有return执行后均返回一个promise实例
+
++ 要得到async的值，第一种方式是promise.then，第二种是await
+
+## await
+
+await是用来得到一个promise的resolve的值
+
++ await用在异步function里，一旦出现await则此行语句会被包装成promise，呆await的promise得到resolve后再then后面的语句
+
++ 如果await用在赋值语句里：value = await promise(); 则value的最终值为promise的resolve值，如果promise已经resolve，value可以立即得到值

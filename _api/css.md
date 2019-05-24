@@ -2,8 +2,44 @@
   layout: api
   title: CSS标准
 ---
-
 # CSS标准
+
+## 选择器
+
+[属性选择器](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Attribute_selectors)
+
+[伪类选择器](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements)
+
+## background
+
+background-attachment可以设置背景固定在屏幕上fixed，固定在容器中scroll，以及和容器内容保持固定local
+
+通过逗号分隔，可以给容器设置多个背景组，一个背景组就包含image/color等
+
+通过background-clip-text可以为文字设置背景图片。
+
+对于整个网页的背景，如果html设置背景就取，否则取body的背景。注意跟html和body的实际尺寸没有任何关系，只要是有一个设置了背景，这个背景就会作为全局背景使用。
+
+## border
+
+设置椭圆的border，需要使用到斜杠，可以是对称椭圆，也可以是非对称椭圆：
+
+`border-radius: 10px / 20px;`
+
+`border-radius: 10px 30px / 20px 40px;`
+
+通过`border-image-`可以设置border的背景图片，通过`border-image-slice`来对图片进行切片。
+
+## filter
+
+[filter](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_boxes/Advanced_box_effects)
+filter在现代浏览器里也可用，但是需要加前缀。
+
+
+
+
+
+
 
 ## [Containing block 包含块](http://www.w3.org/TR/CSS2/visuren.html#containing-block)
 
@@ -15,8 +51,7 @@
 
 包含块的判定流程为：
 
-![container block](css_containerblock.png)
-
+![container block](css_containerblock.png) 
 所以大多数节点的包含块都是块级祖先容器。absolute和fixed特殊。
 
 另: td(display:table-cell)的包含块是table(display:table)
