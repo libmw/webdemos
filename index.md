@@ -65,6 +65,20 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
     * [Vue](lib/vue.html)
 
+* 应用框架
+
+    * [Nuxt.js](lib/nuxt.html)
+
+    * [TypeScript](lib/typescript.html)
+
+    * [serverless](lib/serverless.html)
+
+* 多端库
+
+    * [Flutter](lib/flutter.html)
+
+    * [Electron](lib/vue.html)
+
 
     
 * 地图类
