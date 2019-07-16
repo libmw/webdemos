@@ -129,6 +129,10 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 
 * [测试工具](tool/test.html)
 
+* [Chrome调试工具](tool/chrome.html)
+
+* [npx命令](tool/npx.html)
+
 * jekyll的使用
 
 * android开发环境
