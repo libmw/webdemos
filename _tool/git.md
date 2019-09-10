@@ -174,6 +174,10 @@ rever可以用某个commit覆盖当前的版本，但是会起冲突，需要解
 
 `git remote show origin` 可以查看远程仓库的各种信息和所有分支
 
+`git remote add origin url` 为本地分支指定远程分支，然后就可以fetch和push了
+
+`git remote remove origin` 切换远程分支用，删除掉当前的origin
+
 ## git rm
 
 删除文件也删除版本控制
