@@ -109,3 +109,9 @@ await是用来得到一个promise的resolve的值
 + await用在异步function里，一旦出现await则此行语句会被包装成promise，呆await的promise得到resolve后再then后面的语句
 
 + 如果await用在赋值语句里：value = await promise(); 则value的最终值为promise的resolve值，如果promise已经resolve，value可以立即得到值
+
+## Date对象
+
++ Date对象对应的时间戳，即取整或者调用getTime方法返回的值为协调世界时的毫秒数，即0时区到现在的毫秒数，与宿主环境的时区无关
+
+

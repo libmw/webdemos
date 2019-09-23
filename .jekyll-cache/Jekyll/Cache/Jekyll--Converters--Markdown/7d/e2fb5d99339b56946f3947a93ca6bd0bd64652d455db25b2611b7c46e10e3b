@@ -1,0 +1,73 @@
+I"Q<h1 id="手机端meta标签">手机端meta标签</h1>
+
+<h2 id="常用设置">常用设置</h2>
+<pre><code data-language="html">    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</code></pre>
+
+<h2 id="viewport">viewport</h2>
+
+<p>设置视图的大小、缩放等等参数。</p>
+
+<p>height = [pixel_value / device-height] ,</p>
+
+<p>width = [pixel_value / device-width ] ,</p>
+
+<p>initial-scale = float_value ,</p>
+
+<p>minimum-scale = float_value ,</p>
+
+<p>maximum-scale = float_value ,</p>
+
+<p>user-scalable = [yes / no] ,</p>
+
+<p>target-densitydpi = [dpi_value / device-dpi / high-dpi / medium-dpi / low-dpi]</p>
+
+<p>通常设置宽度为设备宽度，不能缩放：</p>
+
+<pre><code data-language="html">    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+</code></pre>
+
+<h2 id="format-detection">format-detection</h2>
+
+<p>启动或禁用自动识别页面中的电话号码。</p>
+
+<pre><code data-language="html">    <meta name="format-detection" content="telephone=no" />
+</code></pre>
+
+<h2 id="apple-mobile-web-app-capable">apple-mobile-web-app-capable</h2>
+
+<p>是否全屏模式运行，通常设置为yes</p>
+
+<pre><code data-language="html">    <meta name="apple-mobile-web-app-capable" content="yes" />
+</code></pre>
+
+<h2 id="apple-mobile-web-app-status-bar-style">apple-mobile-web-app-status-bar-style</h2>
+
+<p>设置Web App的状态栏（屏幕顶部栏）的样式</p>
+
+<p>只有apple-mobile-web-app-capable=yes此标签才起作用</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>default</td>
+      <td>默认值</td>
+    </tr>
+    <tr>
+      <td>black</td>
+      <td>黑色状态栏</td>
+    </tr>
+    <tr>
+      <td>black-translucent</td>
+      <td>半透明黑色状态栏</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code data-language="html">    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</code></pre>
+
+:ET

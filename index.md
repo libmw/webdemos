@@ -8,6 +8,15 @@ http://libmw.github.io/webdemos
 
 # 在web开发中需要用到的各种代码库、开发工具等的集合demo
 
+## 计算机基础
+
+计算机的底层是硬件，没有硬件的支撑所有软件都是去意义，底层硬件的结构对软件的优化非常重要。
+
+操作系统是硬件和软件之间的桥梁，掌握掌握操作系统的基本知识对软件的开发非常必要。
+
+* [指令集](basic/isa.html)
+
+* [操作系统](basic/os.html)
 
 ## API
 
@@ -53,6 +62,13 @@ API包含了css、js、html等等的标准制定者和一些最本质的、最�
 * [模块化](architecture/module.html)
 
 * [前端工程化工具](architecture/pack.html)
+
+## 运维
+
+* cicd
+
+* 容器化
+
 
 
 

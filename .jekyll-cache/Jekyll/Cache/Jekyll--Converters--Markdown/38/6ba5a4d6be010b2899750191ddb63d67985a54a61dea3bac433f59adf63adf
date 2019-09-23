@@ -1,0 +1,43 @@
+I"<style>
+    #div1,#div2{
+        width: 200px;
+        height: 200px;
+        margin: 20px;
+        border: 1px solid blue;
+    }
+</style>
+
+<h1 id="jsplumb">jsplumb</h1>
+
+<p><a href="https://jsplumbtoolkit.com/community/doc/home.html">jsplumb</a>是一个用箭头曲线连接两个或多个dom的组件，使用它可以方便在页面上画出流程图等。</p>
+
+<h2 id="典型用法">典型用法</h2>
+
+<pre><code data-language="javascript">jsPlumb.ready(function(){
+  jsPlumb.connect({
+      source:'div1',
+      target:'div2',
+      paintStyle:{strokeWidth:15,stroke:'rgb(243,230,18)'},
+      endpointStyle:{fill:'rgb(243,229,0)'}
+  });
+});
+</code></pre>
+
+<h2 id="示例">示例</h2>
+
+<div id="div1"></div>
+<div id="div2"></div>
+<script src="jsPlumb-2.2.3.js"></script>
+
+<script>
+    jsPlumb.ready(function(){
+        jsPlumb.connect({
+            source:'div1',
+            target:'div2',
+            paintStyle:{strokeWidth:15,stroke:'rgb(243,230,18)'},
+            endpointStyle:{fill:'rgb(243,229,0)'}
+        });
+    });
+</script>
+
+:ET

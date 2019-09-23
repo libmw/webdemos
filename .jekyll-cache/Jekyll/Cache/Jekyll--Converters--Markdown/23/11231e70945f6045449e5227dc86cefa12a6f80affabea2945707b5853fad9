@@ -1,0 +1,13 @@
+I"�<h1 id="flutter">Flutter</h1>
+
+<p>Flutter的优势在于直接编译成可执行文件，并且通过自身的图形渲染库来实现跨平台。</p>
+
+<p>这样就保证了各个平台下都得到一致的渲染结果。</p>
+
+<p>目前Flutter主要是在安卓和ios上具有出色的体验，优于rn和weex这种依赖原生ui渲染的框架。</p>
+
+<h2 id="官方文档">官方文档</h2>
+
+<p><a href="https://flutter.dev/">Flutter官方文档</a></p>
+
+:ET

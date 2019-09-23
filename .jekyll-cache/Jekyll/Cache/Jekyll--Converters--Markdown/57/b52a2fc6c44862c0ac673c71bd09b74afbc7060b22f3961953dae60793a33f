@@ -1,0 +1,95 @@
+I";<h2 id="协议">协议</h2>
+
+<h2 id="http缓存">http缓存</h2>
+
+<p>关于浏览器缓存可以看看这篇文章：</p>
+
+<p><a href="http://segmentfault.com/a/1190000004132566">缓存机制浅析 - 移动端 Web 加载性能优化</a></p>
+
+<h3 id="最原始的缓存机制304缓存">最原始的缓存机制：304缓存</h3>
+
+<p>一般情况下，浏览器在第一次访问一个静态文件的时候都会把它缓存到本地。但是在第二次请求的时候到底是使用缓存还是重新从服务器下载这个静态文件呢？</p>
+
+<p>理论上来说，如果被缓存的文件在服务器上没有更新过，则可以直接使用缓存；如果被缓存的静态文件已经在服务器上更改过了，则需要重新下载。</p>
+
+<p>因此，只要浏览器能够知道这个文件是否在服务器上已经更新过，则可以判断是使用缓存还是重新下载。</p>
+
+<p>如何进行这个判断呢？</p>
+
+<ul>
+  <li>浏览器第一次访问静态文件的时候，服务器不仅仅返回静态文件的内容，还返回文件的相关信息：唯一标识ETag和最后修改时间Last-Modified。</li>
+</ul>
+
+<p><code class="highlighter-rouge">ETag</code>：静态文件标识，相当于文件的MD5。浏览器在第二次访问文件的时候通过询问服务器文件是否有改变。</p>
+
+<p><code class="highlighter-rouge">Last-Modified</code>:文件最后修改时间。第二次访问时通过If-Modified-Since请求头携带这个时间询问服务器文件是否有改变。</p>
+
+<ul>
+  <li>浏览器再次访问这个静态文件的时候，通过If-None-Match请求头发送文件的ETag到服务器，通过If-Modified-Since请求头发送最后更新时间到服务器，服务器比对浏览器端文件和服务器端文件的ETag和Last-Modified，只要有一个没改变，则认为此文件没有更新，直接返回<code class="highlighter-rouge">304</code>告诉浏览器使用本地缓存。</li>
+</ul>
+
+<p><code class="highlighter-rouge">优点：</code> 保证浏览器使用的静态文件是最新的静态文件。一旦服务器更新了文件，浏览器就会重新下载。</p>
+
+<p><code class="highlighter-rouge">缺点：</code> 浏览器每次都需要发送一个http请求询问服务器缓存是否更新。虽然这个请求体积非常小，但是建立http连接需要很大的开销，对服务器来说也存在带宽和计算资源的消耗。</p>
+
+<p><strong>说明</strong>：Nginx默认对静态文件使用的便是这种机制。</p>
+
+<h3 id="更轻量的缓存机制200-from-cache">更轻量的缓存机制：200 from cache</h3>
+
+<p>304优缺点显而易见，那么我们有没有办法不发送询问请求实现静态文件的更新呢？？</p>
+
+<p>如果不发送询问请求而直接使用本地缓存，导致的问题就是服务器文件更新后根本没办法通知浏览器。</p>
+
+<p>要让浏览器直接使用缓存，我们只用满足一个条件：保证浏览器得到的静态文件永远不会被服务器更新。</p>
+
+<p>但是我们的静态文件是不可能用不更新的，因此我们不能再使用原始的静态文件组织方式，一旦静态文件有更新，我们就改变这个文件的文件名。</p>
+
+<p>这样浏览器根本不需要关心缓存的文件是否会被更新，因为服务器保证不会更新同名文件，一旦更新，则会修改文件名，导致文件的url发生改变，从而让浏览器重新请求文件。</p>
+
+<p>那如何让浏览器直接使用缓存而不再发送请求询问静态文件是否更新呢？我们需要使用到<code class="highlighter-rouge">cache-control</code>。</p>
+
+<p><code class="highlighter-rouge">cache-control</code>： 告诉浏览器缓存静态文件的时间，单位为秒，如<code class="highlighter-rouge">cache-control:max-age=315360000</code>代表1年之内直接使用缓存，不再询问服务器是否更新。</p>
+
+<p>这样，浏览器对url未改变的静态文件不再询问服务器是否有更新而直接使用缓存，这种使用方式便的状态吗便是<code class="highlighter-rouge">200 from cache</code></p>
+
+<h4 id="实现200-from-cache的具体步骤">实现200 from cache的具体步骤</h4>
+
+<ul>
+  <li>
+    <p>服务器对所有静态文件设置cache-control头。如<code class="highlighter-rouge">cache-control:max-age=315360000</code> 这个是淘宝的，10年。</p>
+  </li>
+  <li>
+    <p>静态文件更新通过更新静态文件url来完成，在编译阶段把静态文件的文件名改为带MD5的格式。如a.js编译为a_324jhoi4.js。</p>
+  </li>
+  <li>
+    <p>如果一年后我们这个静态文件的url还未变更，浏览器会回到刚才的304机制询问服务器是否更新文件，保证正确使用缓存。</p>
+  </li>
+</ul>
+
+<p><code class="highlighter-rouge">优点</code>：理想情况下浏览器访问一个页面只需要1个http请求。通过这个方式，浏览器访问页面的时候只需要从服务器下载页面的html内容，外链的静态文件直接使用本地缓存，只有被服务器更新过的静态文件(已经在html内容里更新了这些文件url)才会被重新下载。</p>
+
+<p><code class="highlighter-rouge">缺点</code>：需要对源代码进行编译，在静态文件的名称中包含MD5值，保证文件改变则文件名也改变。</p>
+
+<p>200 from cache不仅仅可以从硬盘缓存加载(from disk cache)，还可以从内存中直接加载(from memory cache)，因此在多页面共享静态文件的时候性能非常优秀。</p>
+
+<h3 id="关于浏览器的刷新chrome测试">关于浏览器的刷新(chrome测试)</h3>
+
+<ul>
+  <li>
+    <p>只有直接在地址栏打开url的时候才会使用200 from cache 缓存</p>
+  </li>
+  <li>
+    <p>手动刷新页面（F5)，浏览器正常刷新页面，和直接在地址栏打开一样。</p>
+  </li>
+  <li>
+    <p>强制刷新页面（Ctrl+F5)，浏览器会直接忽略本地的缓存（有缓存也会认为本地没有缓存），在请求中加上字段：Cache-Control:no-cache（或 Pragma:no-cache），发包向服务重新拉取文件。</p>
+  </li>
+</ul>
+
+<h2 id="ajax">Ajax</h2>
+
+<p>在ie里使用ajax的get请求，如果服务器没有返回no-cache，则会缓存请求。也就是说每次请求的内容都是一样的，不管服务器更新没更新。</p>
+
+<p>所以使用$.get或者$.getJSON都需要加上 <code class="highlighter-rouge">_t = (+ new Date())</code> 参数</p>
+
+:ET

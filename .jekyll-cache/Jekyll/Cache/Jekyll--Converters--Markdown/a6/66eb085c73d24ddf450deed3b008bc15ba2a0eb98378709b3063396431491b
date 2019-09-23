@@ -1,0 +1,22 @@
+I"C<h2 id="grip--r-关键字-">grip -r “关键字” ./*</h2>
+
+<p>搜索当前文件夹下的所有子目录子文件里的关键字</p>
+
+<h2 id="tar">tar</h2>
+
+<h3 id="压缩">压缩</h3>
+
+<p><code class="highlighter-rouge">tar -cvf docs.tar docs</code></p>
+
+<h3 id="解压">解压</h3>
+
+<p><code class="highlighter-rouge">tar -xvf docs.tar</code> 如果是gzip的tar包：<code class="highlighter-rouge">tar -zxvf docs.tar.gz</code></p>
+
+<h2 id="上传">上传</h2>
+
+<p>rz 上传如果遇到重名的，不会覆盖，必须先删除</p>
+
+<h2 id="下载">下载</h2>
+
+<p>sz</p>
+:ET

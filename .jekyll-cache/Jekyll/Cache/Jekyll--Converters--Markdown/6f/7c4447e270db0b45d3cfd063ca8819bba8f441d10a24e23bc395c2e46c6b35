@@ -1,0 +1,5 @@
+I"P<h1 id="webuploader">webUploader</h1>
+
+<p>百度的<a href="http://fex.baidu.com/webuploader/">webUplaoder</a>是一个支持html5和flash上传的组件，支持分片上传。 只需要指定一个dom，就可以
+在这个dom上加一层flash或者一个透明按钮，使得点击这个dom的时候触发选择文件的动作。</p>
+:ET

@@ -1,0 +1,14 @@
+I"�<h2 id="性能优化">性能优化</h2>
+
+<p><a href="http://wave.webaim.org/">webaim检测网站链接可用性</a> 其中node与java的通信应该是走的内网通信。一般架构中，数据库与controller之间的通信也是走内网tcp，通信完成便断开链接。</p>
+
+<h2 id="架构">架构</h2>
+
+<p><a href="http://tech.meituan.com/node-fullstack-development-practice.html">美团利用Node实现的大前端架构</a></p>
+
+<p><a href="https://github.com/xufei/blog/issues/19">2015前端构架之路，主要讲MVVM</a></p>
+
+<h2 id="翻墙">翻墙</h2>
+
+<p><code class="highlighter-rouge">一个免费的pac</code>  http://www.mima.re/abc.pac</p>
+:ET

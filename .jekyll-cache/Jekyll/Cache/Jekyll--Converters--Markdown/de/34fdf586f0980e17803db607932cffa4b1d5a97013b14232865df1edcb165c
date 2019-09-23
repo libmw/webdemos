@@ -1,0 +1,73 @@
+I"�	<style>
+    .vertical-wrapper{
+        border: 1px solid red;
+        width: 400px;
+        height: 300px;
+        text-align:center;
+    }
+    .vertical-middle{
+        background: green;
+        width: 100px;
+        height: 130px;
+        margin: 0 auto;
+    }
+</style>
+
+<h1 id="css垂直居中对齐">css垂直居中对齐</h1>
+
+<h2 id="使用table-cell-ie8">使用table-cell [IE8+]</h2>
+
+<p>外层容器display:table-cell，vertical-align:middle即可。</p>
+
+<h3 id="此方法的已知问题">此方法的已知问题：</h3>
+
+<p>1.不支持外层容器position:absolute的情况</p>
+
+<p>2.table-cell的包含块是display:table的元素。因此如果要在table-cell上使用百分比高度，必须要指定父级为display:table</p>
+
+<div class="vertical1 vertical-wrapper" style="display: table-cell;vertical-align: middle;">
+    <div class="vertical-middle"></div>
+</div>
+
+<h2 id="inline-block-ie8">inline-block [IE8+]</h2>
+
+<p>1.由于辅助元素需要设置高度为100%;所以作为包含块的父级元素必须显示指定height值(即不可为百分比)</p>
+
+<p>2.辅助元素和被居中的元素都应display:inline-block;vertical-align:middle;</p>
+
+<div class="vertical1 vertical-wrapper">
+    <div class="vertical-middle" style="vertical-align:middle;display:inline-block;"></div>
+    <div style="display:inline-block;vertical-align:middle;height:100%;width:1px;"></div>
+</div>
+
+<h2 id="translate-50-50-ie9">translate(-50%,-50%) [IE9+]</h2>
+
+<p>只支持现代浏览器。手机上可用</p>
+
+<p>由于<code class="highlighter-rouge">translate的百分比是相对于自身</code>的，所以可用百分比来实现不定高度的垂直居中。</p>
+
+<div class="vertical1 vertical-wrapper" style="position: relative;">
+    <div class="vertical-middle" style="transform: translate(-50%,-50%);position:absolute;top:50%;left:50%"></div>
+</div>
+
+<h2 id="button居中">button居中</h2>
+
+<p>只试用可用放入button中的标签，如img</p>
+
+<style>
+button {
+ width: 400px;
+ height: 400px;
+ background: none;
+ border: 1px solid #ccc;
+}
+</style>
+
+<p><button>
+  <img src="http://placehold.it/200x200" style="display:inline" />
+</button></p>
+
+<p>如果要实现ie7、6的垂直居中，请直接用table嵌套</p>
+
+<p>另，参考<a href="http://www.zhangxinxu.com/wordpress/2009/08/%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%9B%BA%E5%AE%9A%E7%9A%84%E5%9B%BE%E7%89%87%E3%80%81%E5%A4%9A%E8%A1%8C%E6%96%87%E5%AD%97%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">大小不固定的图片、多行文字的水平垂直居中</a></p>
+:ET

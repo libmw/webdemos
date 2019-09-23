@@ -1,0 +1,122 @@
+I"�<h2 id="mdn之learn篇">MDN之learn篇</h2>
+
+<h1 id="html">html</h1>
+
+<h2 id="html基本"><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started">html基本</a></h2>
+
+<p>HTML5重定义了元素分类，不通过block和inline来划分。</p>
+
+<p>empty element结尾没必要再打斜杠</p>
+
+<p>disabled这种布尔属性，即使写值，也仅有一个值，就是本身，所以通常不用写值</p>
+
+<p>属性的值可以是单引号、双引号、无引号</p>
+
+<p>对于空格，不管你打多少个，浏览器只显示一个，除非加pre标签</p>
+
+<h2 id="metadata"><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML">metadata</a></h2>
+
+<p>keywords不再被搜索引擎支持，因为这个东西完全可以和页面实际内容不符，搜索引擎不是傻逼对吧？</p>
+
+<p>对于lang属性，可以让搜索引擎更快速的分析文档，也可以让读屏软件正确的读取，但是对于中文，应该用处不是很大</p>
+
+<h2 id="链接"><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Creating_hyperlinks">链接</a></h2>
+
+<p>对于链接的最佳实践：文字应该让用户明白点击后会跳转到哪里、不要让相同文字的链接连接到不同地方防止读屏困难、尽量使用相对路径(代码更加易读，浏览器不需要在解析域名)、链接到文件的时候说明文件大小和类型</p>
+
+<p>对于mailto，可以用cc、bcc、title、subject</p>
+
+<h2 id="文本包裹"><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Advanced_text_formatting">文本包裹</a></h2>
+
+<p>dl代表描述列表，dt代表描述项，dd代表描述定义，一个dt应该只对应一个dd才对</p>
+
+<p>对于时间，我们应该用time标签加datetime属性包裹，方便机器识别</p>
+
+<p>对于缩略词，我们应该用abbr标签加title属性包裹</p>
+
+<h2 id="图片包裹"><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML">图片包裹</a></h2>
+
+<p>使用figure和figcaption标签对图片进行包裹和说明，但是figure标签不仅仅包裹图片，也包裹视频</p>
+
+<h2 id="视频音频"><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content">视频音频</a></h2>
+
+<p>使用track标签可以原生显示字幕，字幕还可以指定语言</p>
+
+<h2 id="iframe"><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Other_embedding_technologies">iframe</a></h2>
+
+<p>iframe: https可以防止iframe访问父https页面，反之亦然，所以使用https后的站点是不能通过iframe访问的</p>
+
+<p>通过sandbox我们可以阻止ifram里面的网页执行script、弹出窗口等等</p>
+
+<h2 id="表格"><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_boxes/Styling_tables">表格</a></h2>
+
+<p>table: table需要用了table-layout:fixed，才会认设置的宽度，否则table会根据内容自适应，给table或者td设置宽度也无效</p>
+
+<p>关于这个属性，有专门的文章探讨：https://css-tricks.com/fixing-tables-long-strings/</p>
+
+<p>colgroup和col结合可以定义每一列的样式，但是现在来看css3完全可以解决这个问题了。</p>
+
+<p>tbody总是存在的，即使你在代码里不写，浏览器也会自动加上。</p>
+
+<p>对于视力障碍的table优化：使用th来定义表头，对th使用scope来指定此表头代表的列(col)还是行(row)，或者列集合(colgroup)/行集合(rowgroup)。还可以使用id和headers替代本方案，但是过于复杂，一般不做推荐。</p>
+
+<h2 id="websockets"><code class="highlighter-rouge">WebSockets</code></h2>
+
+<p><a href="https://www.christian-schneider.net/CrossSiteWebSocketHijacking.html">WebSockets同源策略</a></p>
+
+<p>由于WebSockets不遵循同源策略，而WebSockets在第一次握手的时候是使用的http/s协议，会携带cookie信息，所以：
+WebSockets如果后端鉴权没做好，会导致较为严重的安全问题。后端在建立连接的时候不应该使用cookie鉴权，并应该鉴定Origin头部字段</p>
+
+<h2 id="表单"><code class="highlighter-rouge">表单</code></h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data">form-data</a></p>
+
+<p>multipart/form-data的意思是传输的内容被分成多个部分，文件和文本分成不同的部分传输，因为http是基于文本的协议，所以必须指定为form-data才能传输文件</p>
+
+<p>对于Xss，在输出内容到前端的时候默认应该把内容里的特殊符号都进行转义，除非是富文本。对于csrf，应该在form提交的时候带上token</p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation">表单验证</a></p>
+
+<p>可以使用:valid和:invalid伪类对表单进行验证通过和不通过的样式展现。 浏览器api也提供了丰富的原生valid功能如validationMessage、validity.valid等。表单也有checkValidity、setCustomValidity等方法</p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/How_to_build_custom_form_widgets">自定义表单</a></p>
+
+<p>对于自定义的表单，可以使用role属性来使tab有用，这样增强了访问性。比如表示select的div的role为rolebox，option的role为option</p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_forms_through_JavaScript">手动构造formdata</a></p>
+
+<p>手动构造formdata，可以用字符串拼接任意形式的formdata，然后用xhr.send方法发送，formdata的格式和chrome调试工具里的字符串格式一致。</p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/HTML_forms_in_legacy_browsers">浏览器兼容</a></p>
+
+<p>查找兼容性除了can i use，还有quirks mode等网站</p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Property_compatibility_table_for_form_widgets">各个表单的可设置属性</a></p>
+
+<p>这个列表里有不同的表单元素对不同的css属性浏览器的支持情况。</p>
+
+<h2 id="页面focus"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus">页面focus</a></h2>
+
+<p>var focused = document.hasFocus(); 可以检测当前的页面是否被聚焦</p>
+
+<h2 id="页面可见性"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">页面可见性</a></h2>
+
+<p>通过document的onvisibilitychange事件和判断hidden/visibilityState属性来判断当前页面是否被因此，从而暂停一些功能如视频播放、幻灯片等</p>
+
+<h2 id="音视频格式"><code class="highlighter-rouge">音视频格式</code></h2>
+
+<p>浏览器的video和audio标签对音视频格式的支持是有限的，参考<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats">此表</a></p>
+
+<h2 id="分类"><code class="highlighter-rouge">分类</code></h2>
+
+<p>传统对标签分类一般分为inline和block两大类，但是<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories">新式的分类</a>却不是按照这样来分。</p>
+
+<h2 id="mime-type"><code class="highlighter-rouge">MIME type</code></h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Glossary/MIME_type">Multipurpose Internet Mail Extensions</a>意为多功能Internet邮件扩展，它设计的最初目的是为了在发送电子邮件时附加多媒体数据，让邮件客户程序能根据其类型进行处理。然而当它被HTTP协议支持之后，它的意义就更为显著了。它使得HTTP传输的不仅是普通的文本，而变得丰富多彩。
+每个MIME类型由两部分组成，前面是数据的大类别，例如声音audio、图象image等，后面定义具体的种类。</p>
+
+<h2 id="颜色"><code class="highlighter-rouge">颜色</code></h2>
+
+<p>可以通过<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/caret-color">caret-color</a>改变光标的颜色</p>
+:ET

@@ -1,0 +1,113 @@
+I"z<h1 id="css标准">CSS标准</h1>
+
+<h2 id="选择器">选择器</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Attribute_selectors">属性选择器</a></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements">伪类选择器</a></p>
+
+<h2 id="background">background</h2>
+
+<p>background-attachment可以设置背景固定在屏幕上fixed，固定在容器中scroll，以及和容器内容保持固定local</p>
+
+<p>通过逗号分隔，可以给容器设置多个背景组，一个背景组就包含image/color等</p>
+
+<p>通过background-clip-text可以为文字设置背景图片。</p>
+
+<p>对于整个网页的背景，如果html设置背景就取，否则取body的背景。注意跟html和body的实际尺寸没有任何关系，只要是有一个设置了背景，这个背景就会作为全局背景使用。</p>
+
+<h2 id="border">border</h2>
+
+<p>设置椭圆的border，需要使用到斜杠，可以是对称椭圆，也可以是非对称椭圆：</p>
+
+<p><code class="highlighter-rouge">border-radius: 10px / 20px;</code></p>
+
+<p><code class="highlighter-rouge">border-radius: 10px 30px / 20px 40px;</code></p>
+
+<p>通过<code class="highlighter-rouge">border-image-</code>可以设置border的背景图片，通过<code class="highlighter-rouge">border-image-slice</code>来对图片进行切片。</p>
+
+<h2 id="filter">filter</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_boxes/Advanced_box_effects">filter</a>
+filter在现代浏览器里也可用，但是需要加前缀。</p>
+
+<h2 id="containing-block-包含块"><a href="http://www.w3.org/TR/CSS2/visuren.html#containing-block">Containing block 包含块</a></h2>
+
+<p>在css2.1中很多定位和尺寸的计算，都是相对于一个矩形区域，这个区域就叫做包含块，如以下的标准：</p>
+
+<p><strong>“top”:</strong></p>
+
+<p><code class="highlighter-rouge">Percentages:  	refer to height of containing block</code></p>
+
+<p>包含块的判定流程为：</p>
+
+<p><img src="css_containerblock.png" alt="container block" /> 
+所以大多数节点的包含块都是块级祖先容器。absolute和fixed特殊。</p>
+
+<p>另: td(display:table-cell)的包含块是table(display:table)</p>
+
+<p>三种比较少见的包含块，灰色区域是span，position是relative</p>
+
+<p><img src="css_containerblock1.png" alt="container block" /></p>
+
+<p>‘direction’ 是 ‘ltr’
+<img src="css_containerblock2.png" alt="container block" /></p>
+
+<p>‘direction’ 是 ‘rtl’</p>
+
+<p><img src="css_containerblock3.png" alt="container block" /></p>
+
+<h2 id="height"><a href="http://www.w3.org/TR/CSS2/visudet.html#the-height-property">height</a></h2>
+
+<p>当height的值为百分比的时候，基数为包含块:</p>
+
+<p>1.如果包含块<code class="highlighter-rouge">没有设置height值</code>，则这个百分比值无效，将自动转换为<code class="highlighter-rouge">auto</code>。</p>
+
+<p>2.如果当前元素为<code class="highlighter-rouge">absolute</code>，则会自动计算包含块<code class="highlighter-rouge">padding盒子</code>的高度为基数。</p>
+
+<p>codepen示例： <a href="http://codepen.io/libmw/pen/ZOPaQN">http://codepen.io/libmw/pen/ZOPaQN</a></p>
+
+<h2 id="margin-topmargin-bottom"><a href="http://www.w3.org/TR/CSS2/box.html#margin-properties">margin-top,margin-bottom</a></h2>
+
+<p>为内联元素设置margin，仅仅<code class="highlighter-rouge">左右margin有效</code></p>
+
+<p>当上下margin的值为百分比的时候，基数为包含块的<code class="highlighter-rouge">宽度</code>而非高度</p>
+
+<h1 id="选择器-1">选择器</h1>
+
+<p><img src="http://ww2.sinaimg.cn/large/c5131475jw1ez3oi2e092j21h72e0wvu.jpg" alt="CSS选择符归类" /></p>
+
+<h1 id="预处理">预处理</h1>
+
+<p>css预处理非常有必要，即使你不使用任何其他工具，预处理也应该使用，这样能够大大提高写码效率。</p>
+
+<p>css最常见预处理工具为less和sass。</p>
+
+<p>less预处理可以使用winless或者考拉直接编译，如果有构建工具，则构建工具可以直接编译。</p>
+
+<h1 id="模块化">模块化</h1>
+
+<p>css的全局作用域导致了变量名冲突的潜在危险，而模块化便是把css限制在一个局部的作用域里。</p>
+
+<ul>
+  <li>
+    <p>通过明明实现模块化，说白了就是每个模块通过命名规范来避免冲突，典型的如<a href="http://getbem.com/">BEM</a></p>
+  </li>
+  <li>
+    <p>通过js来写css。就是react那套方案了，带来的危害就是全成内联样式了。那你还给我谈css搞毛啊？react这套显然不好。</p>
+  </li>
+  <li>
+    <p>通过编译工具来实现模块化。说白了就是通过js的模块化方案来引入css，通过编译工具来对className进行统一的处理，且让js可以访问className，爽歪歪。典型的就是<a href="https://github.com/css-modules/css-modules">cssModules了</a></p>
+  </li>
+</ul>
+
+<h1 id="vertical-align">vertical-align</h1>
+
+<p>看字面意是垂直方向的对齐，这个对齐可以取很多的值，但是大多数值都是基于当前内联元素的baseline的。baseline就是X字符的下边缘。</p>
+
+<p>如设置为10px，意思是把本元素的baseline放到父元素的baseline的上方10px处。</p>
+
+<p>百分比值取本元素的line-height为基数</p>
+
+<p>top就是本身的顶与父元素的顶对齐，bottom同理，middle则不是</p>
+:ET

@@ -1,0 +1,261 @@
+I"~<h1 id="httplibmwgithubiowebdemos">http://libmw.github.io/webdemos</h1>
+
+<h1 id="在web开发中需要用到的各种代码库开发工具等的集合demo">在web开发中需要用到的各种代码库、开发工具等的集合demo</h1>
+
+<h2 id="计算机基础">计算机基础</h2>
+
+<p>计算机的底层是硬件，没有硬件的支撑所有软件都是去意义，底层硬件的结构对软件的优化非常重要。</p>
+
+<p>操作系统是硬件和软件之间的桥梁，掌握掌握操作系统的基本知识对软件的开发非常必要。</p>
+
+<ul>
+  <li><a href="api/mdn.html">重读MDN汇总</a></li>
+</ul>
+
+<h2 id="api">API</h2>
+
+<p>API包含了css、js、html等等的标准制定者和一些最本质的、最基础的、最重要的概念以及笔记。</p>
+
+<p>标准制定者包含<a href="http://www.w3.org/TR/#tr_Javascript_APIs">W3C</a>、<a href="https://html.spec.whatwg.org/">WHATWG</a></p>
+
+<p>标准整理者包含<a href="https://developer.mozilla.org/en/HTML">MDN</a></p>
+
+<ul>
+  <li>
+    <p><a href="api/mdn.html">重读MDN汇总</a></p>
+  </li>
+  <li>
+    <p><a href="api/css.html">CSS标准</a></p>
+  </li>
+  <li>
+    <p><a href="api/js.html">JS标准</a></p>
+  </li>
+  <li>
+    <p><a href="api/html.html">HTML标准</a></p>
+  </li>
+  <li>
+    <p><a href="api/webapi.html">WebApi</a></p>
+  </li>
+  <li>
+    <p><a href="api/svg.html">SVG</a></p>
+  </li>
+  <li>
+    <p><a href="api/photo.html">图片</a></p>
+  </li>
+  <li>
+    <p><a href="api/http.html">Http/Https</a></p>
+  </li>
+  <li>
+    <p><a href="api/encode.html">字符编码、字符集</a></p>
+  </li>
+  <li>
+    <p><a href="api/reg.html">正则表达式</a></p>
+  </li>
+  <li>
+    <p><a href="api/nodejs.html">node.js</a></p>
+  </li>
+  <li>
+    <p><a href="api/license.html">开源协议</a></p>
+  </li>
+  <li>
+    <p>Canvas</p>
+  </li>
+  <li>
+    <p><a href="api/files.html">文件操作</a></p>
+  </li>
+</ul>
+
+<h2 id="架构">架构</h2>
+
+<ul>
+  <li>
+    <p><a href="architecture/performance.html">性能优化</a></p>
+  </li>
+  <li>
+    <p><a href="architecture/module.html">模块化</a></p>
+  </li>
+  <li>
+    <p><a href="architecture/pack.html">前端工程化工具</a></p>
+  </li>
+</ul>
+
+<h2 id="三方库">三方库</h2>
+
+<ul>
+  <li>
+    <p>基础库</p>
+
+    <ul>
+      <li>
+        <p><a href="lib/react.html">React</a></p>
+      </li>
+      <li>
+        <p><a href="lib/vue.html">Vue</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>应用框架</p>
+
+    <ul>
+      <li>
+        <p><a href="lib/nuxt.html">Nuxt.js</a></p>
+      </li>
+      <li>
+        <p><a href="lib/typescript.html">TypeScript</a></p>
+      </li>
+      <li>
+        <p><a href="lib/serverless.html">serverless</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>多端库</p>
+
+    <ul>
+      <li>
+        <p><a href="lib/flutter.html">Flutter</a></p>
+      </li>
+      <li>
+        <p><a href="lib/vue.html">Electron</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>地图类</p>
+
+    <ul>
+      <li><a href="lib/baidu-map.html">百度地图</a></li>
+      <li><a href="lib/google-map.html">谷歌地图</a></li>
+      <li><a href="lib/open-street-map.html">openStreetMap</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>图表类</p>
+
+    <ul>
+      <li><a href="lib/baidu-map.html">Echarts</a></li>
+      <li><a href="lib/highcharts.html">Hightcharts</a></li>
+      <li><a href="lib/jsplumb.html">jsplumb</a></li>
+    </ul>
+  </li>
+  <li>UI库
+    <ul>
+      <li><a href="http://www.imooc.com/article/1323">响应式HTML5框架,包含bootstrap、Foundation等</a></li>
+    </ul>
+  </li>
+  <li>富文本编辑器
+    <ul>
+      <li><a href="lib/ueditor.html">UEditor</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>表单验证<a href="http://iotofcmcc.github.io/docs/fe">http://iotofcmcc.github.io/docs/fe</a></p>
+  </li>
+  <li>
+    <p>幻灯播放<a href="http://iotofcmcc.github.io/docs/fe">http://iotofcmcc.github.io/docs/fe</a></p>
+  </li>
+  <li>
+    <p><a href="lib/file-upload.html">文件上传</a></p>
+  </li>
+  <li>
+    <p><a href="lib/image-clip.html">图片裁剪</a></p>
+  </li>
+  <li>
+    <p>代码高亮</p>
+
+    <ul>
+      <li><a href="lib/rainbow.html">rainbows</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>其他</p>
+
+    <ul>
+      <li>基于nodejs的使用js开发桌面应用<a href="http://electron.atom.io/#built-on-electron">electron</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="开发工具">开发工具</h2>
+
+<ul>
+  <li>
+    <p><a href="tool/git.html">git命令</a></p>
+  </li>
+  <li>
+    <p><a href="tool/bash.html">Bush命令</a></p>
+  </li>
+  <li>
+    <p><a href="tool/webpack.html">webpack</a></p>
+  </li>
+  <li>
+    <p><a href="tool/markdown.html">MarkDown</a></p>
+  </li>
+  <li>
+    <p><a href="tool/gulp.html">gulp</a></p>
+  </li>
+  <li>
+    <p><a href="tool/test.html">测试工具</a></p>
+  </li>
+  <li>
+    <p><a href="tool/chrome.html">Chrome调试工具</a></p>
+  </li>
+  <li>
+    <p><a href="tool/npx.html">npx命令</a></p>
+  </li>
+  <li>
+    <p>jekyll的使用</p>
+  </li>
+  <li>
+    <p>android开发环境</p>
+  </li>
+</ul>
+
+<p>*</p>
+
+<h2 id="html5">HTML5</h2>
+
+<ul>
+  <li>
+    <p><a href="h5/meta.html">meta标签</a></p>
+  </li>
+  <li>
+    <p><a href="h5/mobile.html">移动端开发</a></p>
+  </li>
+  <li>
+    <p><a href="h5/webgl.html">webGL</a></p>
+  </li>
+  <li>
+    <p><a href="h5/sensor.html">手机传感器数据，方向、加速度等</a></p>
+  </li>
+</ul>
+
+<h2 id="奇淫技巧">奇淫技巧</h2>
+
+<ul>
+  <li>
+    <p><a href="skill/vertical-middle.html">垂直居中</a></p>
+  </li>
+  <li>
+    <p><a href="skill/vertical-middle.html">js奇淫技巧</a></p>
+  </li>
+  <li>
+    <p><a href="skill/why.html">未解之谜</a></p>
+  </li>
+  <li>
+    <p><a href="skill/article.html">文章汇总</a></p>
+  </li>
+  <li>
+    <p><a href="skill/issue.html">问题汇总</a></p>
+  </li>
+</ul>
+
+<h2 id="心得">心得</h2>
+
+<ul>
+  <li><a href="experience/project.html">项目开发经验</a></li>
+</ul>
+
+<p>please visit <a href="http://iotofcmcc.github.io/docs/fe">http://iotofcmcc.github.io/docs/fe</a></p>
+:ET

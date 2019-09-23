@@ -1,0 +1,11 @@
+I"�<h1 id="百度编辑器ueditor">百度编辑器Ueditor</h1>
+
+<h2 id="代码高亮">代码高亮</h2>
+
+<p>UEditor的代码高亮<code class="highlighter-rouge">不是所见即所得</code>,代码块必须是<code class="highlighter-rouge">只能包含换行标签的纯文本</code>。</p>
+
+<p>要让代码高亮，首先是在编辑器里设置代码块的代码语言，然后再在展示的时候加上SyntaxHighlighter.highlight();来实现。</p>
+
+<p>因此： <code class="highlighter-rouge">任何代码块都必须是纯文本，&lt;pre&gt;里的所有标签除了换行都会被直接删除，包括标签里的内容</code>。</p>
+
+:ET
