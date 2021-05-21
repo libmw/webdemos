@@ -86,4 +86,9 @@
 
 所以使用$.get或者$.getJSON都需要加上 `_t = (+ new Date())` 参数
 
+## 默认缓存
+
+https://tools.ietf.org/html/rfc7234#section-4.2.2  当没有设置`cache-control`也没有设置`expires`，但却设置了last-modified的情况下，文件依然会被默认缓存！感觉这个很容易被忽视掉。
+
+
 

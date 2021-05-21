@@ -5,6 +5,8 @@
 
 # git
 
+git官方文档： <https://git-scm.com/docs>
+
 ## git描述
 
 一个git项目一旦被克隆就包含了所有信息。如各个分支、各个改动等。如果服务器新建了分支，只需git pull即可访问分支
